@@ -41,8 +41,12 @@
                             <el-button size="small" type="warning">按AI使用次数排序</el-button>
                         </div>
                         <div class="right flex-row flex-center flex-start">
-                            <el-button size="small" type="primary">+ 添加分类</el-button>
-                            <el-button size="small" type="primary">+ 添加商户</el-button>
+                            <el-button size="small" type="primary">
+                                <el-link :underline="false" href="addShop.html">+ 添加分类</el-link>
+                            </el-button>
+                            <el-button size="small" type="primary">
+                                <el-link :underline="false" href="addShop.html">+ 添加商户</el-link>
+                            </el-button>
                             <i class="el-icon-s-grid pointer grid" @click="permissonDia=true"></i>
                         </div>
                     </div>
@@ -145,8 +149,8 @@
                 <el-checkbox label="备注"></el-checkbox>
             </el-checkbox-group>
             <div class="button-wrap">
-                <el-button size="small" @click="dialogVisible = false">取 消</el-button>
-                <el-button size="small" type="primary" @click="dialogVisible = false">确 定</el-button>
+                <el-button size="small" @click="permissonDia = false">取 消</el-button>
+                <el-button size="small" type="primary" @click="permissonDia = false">确 定</el-button>
             </div>
         </el-dialog>
     </div>
@@ -204,6 +208,7 @@
                 this.isCollapse = isCollapse
             },
             handleClose() {
+                this.permissonDia = false
             },
         },
     })

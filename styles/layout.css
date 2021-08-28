@@ -208,6 +208,11 @@
     margin-left: 10px;
 }
 
+.table-wrap .table-top .right .el-link {
+    color: #fff;
+    font-size: 12px;
+}
+
 .permisson-dia .permisson-wrap .el-checkbox {
     display: block;
     padding: 10px 0;
