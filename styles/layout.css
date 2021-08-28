@@ -1,5 +1,9 @@
 @import "reset.css";
 
+[v-cloak] {
+    display: none !important;
+}
+
 .blue {
     color: #3f8cff;
 }
@@ -208,8 +212,8 @@
     margin-left: 10px;
 }
 
-.table-wrap .table-top .right .el-link {
-    color: #fff;
+.container .el-button .el-link {
+    color: #fff !important;
     font-size: 12px;
 }
 

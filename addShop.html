@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./element-ui/index.css">
 </head>
 <body>
-<div id="app">
+<div id="app" v-cloak>
     <div class="container flex-row">
         <div>
             <left-menu active-menu="2-1" :default-menu="defaultMenu" :is-collapse="isCollapse"/>
@@ -21,7 +21,7 @@
             <div class="main-content">
                 <div class="table-wrap">
                     <div class="table-top flex-row flex-center flex-start">
-                        <el-button size="small" type="primary">+ 添加分类</el-button>
+                        <el-button size="small" type="primary" :disabled="step===2">+ 添加分类</el-button>
                         <el-button size="small" type="primary" :disabled="step===1">+ 添加商户</el-button>
                     </div>
                     <div class="table-content">
@@ -42,8 +42,10 @@
                     </div>
                 </div>
                 <div class="button-wrap">
-                    <el-button type="primary" size="small">返回我的商户</el-button>
-                    <el-button type="primary" size="small">下一步添加商户</el-button>
+                    <el-button type="primary" size="small">
+                        <el-link href="myShop.html" :underline="false">返回我的商户</el-link>
+                    </el-button>
+                    <el-button type="primary" size="small" @click="step=2">下一步添加商户</el-button>
                 </div>
                 <page-info/>
             </div>
