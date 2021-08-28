@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <link rel="stylesheet" href="">
+    <meta charset="UTF-8">
+    <title>通用参数设置</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./styles/layout.css">
+    <link rel="stylesheet" href="./element-ui/index.css">
+</head>
+<body>
+<div id="app">
+    <div class="container flex-row">
+        <div>
+            <left-menu active-menu="1-2" :default-menu="defaultMenu" :is-collapse="isCollapse"/>
+        </div>
+        <div class="content" :class="{closeMenu:isCollapse}">
+            <div>
+                <top-menu :is-collapse="isCollapse" :default-avatar="defaultAvatar" @change-collapse="changeCollapse"/>
+            </div>
+            <div class="main-content">
+                <div class="form-wrap">
+                    <el-form inline label-width="100px" label-position="right">
+                        <el-form-item label="代理商名称：">
+                            <el-input size="small" v-model="form.name" style="width:300px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="底页技术方：">
+                            <el-input size="small" v-model="form.bottom" style="width:300px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="提示窗内容：">
+                            <el-input size="small" v-model="form.dialog" style="width:300px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="成片存储：">
+                            <el-radio-group v-model="form.save" style="width:300px">
+                                <el-radio :label="1">跟随AI配置</el-radio>
+                                <el-radio :label="2">跟随系统配置</el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <div class="flex-row flex-center">
+                            <el-form-item label="在线充值：" style="width: 180px">
+                                <el-switch v-model="form.sendMoney"></el-switch>
+                            </el-form-item>
+                            <el-form-item label="系统分销：" style="width: 180px">
+                                <el-switch v-model="form.system"></el-switch>
+                            </el-form-item>
+                        </div>
+                        <el-form-item label="冲值单价：">
+                            <el-input size="small" v-model="form.money" style="width:300px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="最底冲值：">
+                            <el-input size="small" v-model="form.lastMoney" style="width:300px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="提现门槛：">
+                            <el-input size="small" v-model="form.setMoney" style="width:300px"></el-input>
+                        </el-form-item>
+                    </el-form>
+                </div>
+                <div class="button-wrap">
+                    <el-button size="small" type="primary" @click="nextStep" style="width: 150px">保存</el-button>
+                </div>
+                <div class="url-wrap">
+                    统计更新地址：https://we7.amidoo.net/app/index.php?i=36&c=
+                </div>
+                <div class="url-wrap">
+                    延迟推送地址:：https://we7.amidoo.net/app/index.php?i=36&c=
+                </div>
+                <div class="switch-wrap flex-row flex-center flex-start">
+                    <div class="switch-list">
+                        总开关
+                        <el-switch v-model="powerAll"></el-switch>
+                    </div>
+                    <div class="switch-list">
+                        代理商
+                        <el-switch v-model="daili"></el-switch>
+                    </div>
+                    <div class="switch-list">
+                        业务员
+                        <el-switch v-model="yewu"></el-switch>
+                    </div>
+                    <div class="switch-list">
+                        商户
+                        <el-switch v-model="shanghu"></el-switch>
+                    </div>
+                </div>
+                <page-info/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="./common/static.js" type="text/javascript"></script>
+<script src="./components/openPlat.js"></script>
+<script src="./components/leftMenu.js"></script>
+<script src="./components/topMenu.js"></script>
+<script src="./components/pageInfo.js"></script>
+<script type="module">
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                isCollapse: false,
+                defaultMenu: defaultMenu,
+                defaultAvatar: defaultAvatar,
+                form: {},
+                powerAll: false,
+                daili: false,
+                yewu: false,
+                shanghu: false,
+            }
+        },
+        created() {
+            this.isCollapse = document.body.clientWidth <= 1200
+            window.addEventListener('resize', () => {
+                this.isCollapse = document.body.clientWidth <= 1200
+            })
+        },
+        methods: {
+            nextStep() {
+
+            },
+            changeCollapse(isCollapse) {
+                this.isCollapse = isCollapse
+            },
+        },
+    })
+</script>
+</html>

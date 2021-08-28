@@ -1,0 +1,219 @@
+@import "reset.css";
+
+.blue {
+    color: #3f8cff;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-center {
+    align-items: center;
+    align-content: center;
+}
+
+.flex-start {
+    align-content: start;
+}
+
+.flex-top {
+    align-items: start;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-no-wrap {
+    flex-wrap: nowrap;
+}
+
+.flex-s-b {
+    justify-content: space-between;
+}
+
+.flex-s-a {
+    justify-content: space-around;
+}
+
+.font-weight {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.container .left-menu {
+    transition: .4s;
+    width: 260px;
+    height: 100%;
+    border-right: solid 1px #e6e6e6;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 11;
+    background-color: #fff;
+}
+
+.container .left-menu.closeMenu {
+    width: 64px;
+}
+
+.container .left-menu .logo-wrap {
+    padding: 13px 0;
+    text-align: center;
+}
+
+.container .left-menu .logo-wrap img {
+    transition: .4s;
+    width: 177px;
+    height: 42px;
+    vertical-align: middle;
+}
+
+.container .left-menu.closeMenu .logo-wrap img {
+    transition: .4s;
+    width: 44px;
+    height: 42px;
+    object-fit: scale-down;
+}
+
+.el-menu-vertical-demo {
+    border-right: none;
+}
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 260px;
+    height: calc(100% - 68px);
+}
+
+.el-menu .el-menu-item.is-active a {
+    color: #3c8fcc;
+}
+
+.container .content {
+    flex: 1;
+    background-color: #f9fafc;
+    padding-left: 260px;
+    transition: .4s;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.container .content.closeMenu {
+    padding-left: 64px;
+}
+
+.container .content .top-menu {
+    box-sizing: border-box;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 68px;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 0 20px 0 280px;
+    font-size: 24px;
+    background-color: #f9fafc;
+    z-index: 10;
+    transition: .4s;
+}
+
+.container .content .top-menu.closeMenu {
+    padding-left: 84px;
+}
+
+.container .content .top-menu .user-wrap {
+    margin: 0 20px;
+}
+
+.container .content .top-menu .user-wrap .user-name {
+    font-size: 14px;
+    color: #333;
+    margin-right: 10px;
+}
+
+.container .content .top-menu .logout-wrap {
+    font-size: 25px;
+    margin-left: 10px;
+}
+
+.container .content .main-content {
+    padding: 88px 20px 20px;
+}
+
+.container .content .main-content .form-wrap {
+    width: 450px;
+    text-align: center;
+}
+
+.container .content .main-content .form-wrap .open-plat-title {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.container .content .main-content .button-wrap {
+    padding-top: 40px;
+    text-align: center;
+}
+
+.content .plat-type-wrap {
+    width: 450px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.container .main-content .url-wrap {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+.container .main-content .switch-wrap {
+    margin-top: 20px;
+}
+
+.container .main-content .switch-wrap .switch-list {
+    margin-right: 20px;
+}
+
+.container .main-content .switch-wrap .switch-list .el-switch {
+    margin-left: 10px;
+}
+
+.container .main-content .page-info {
+    margin-top: 20px;
+}
+
+.container .main-content .page-info .info-content {
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+    text-indent: 20px;
+}
+
+.main-content .table-wrap .table-content {
+    padding: 20px 0;
+}
+
+.table-wrap .table-top .right .grid {
+    color: #3c8fcc;
+    font-size: 36px;
+    margin-left: 10px;
+}
+
+.permisson-dia .permisson-wrap .el-checkbox {
+    display: block;
+    padding: 10px 0;
+}
+
+.permisson-dia .button-wrap {
+    text-align: right;
+    margin-top: 10px;
+}

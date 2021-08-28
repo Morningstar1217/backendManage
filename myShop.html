@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <link rel="stylesheet" href="">
+    <meta charset="UTF-8">
+    <title>开放平台对接</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./styles/layout.css">
+    <link rel="stylesheet" href="./element-ui/index.css">
+</head>
+<body>
+<div id="app">
+    <div class="container flex-row">
+        <div>
+            <left-menu active-menu="2-1" :default-menu="defaultMenu" :is-collapse="isCollapse"/>
+        </div>
+        <div class="content" :class="{closeMenu:isCollapse}">
+            <div>
+                <top-menu :is-collapse="isCollapse" :default-avatar="defaultAvatar" @change-collapse="changeCollapse"/>
+            </div>
+            <div class="main-content">
+                <div class="table-wrap">
+                    <div class="table-top flex-row flex-center flex-start flex-s-b">
+                        <div class="left flex-row flex-center flex-start flex-no-wrap">
+                            <div class="flex-row flex-center flex-start flex-no-wrap">
+                                <el-select style="width: 120px" size="small" v-model="shopType" placeholder="所属类别"
+                                           clearable>
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                                <el-input style="width: 120px;margin: 0 10px" size="small" v-model="shopName"
+                                          placeholder="商户名称"/>
+                            </div>
+                            <el-button size="small" type="warning">刷新</el-button>
+                            <el-button size="small" type="warning">按默认排序</el-button>
+                            <el-button size="small" type="warning">按点数使用排序</el-button>
+                            <el-button size="small" type="warning">按AI使用次数排序</el-button>
+                        </div>
+                        <div class="right flex-row flex-center flex-start">
+                            <el-button size="small" type="primary">+ 添加分类</el-button>
+                            <el-button size="small" type="primary">+ 添加商户</el-button>
+                            <i class="el-icon-s-grid pointer grid" @click="permissonDia=true"></i>
+                        </div>
+                    </div>
+                    <div class="table-content">
+                        <el-table :data="tableData">
+                            <el-table-column prop="date" label="商户ID">
+                            </el-table-column>
+                            <el-table-column prop="name" label="商户名称">
+                            </el-table-column>
+                            <el-table-column prop="phone" label="手机号">
+                            </el-table-column>
+                            <el-table-column prop="phone" label="点数余额">
+                            </el-table-column>
+                            <el-table-column prop="phone" label="AI剪辑余额">
+                            </el-table-column>
+                            <el-table-column prop="phone" label="总播放次数">
+                            </el-table-column>
+                            <el-table-column label="状态">
+                                <template slot-scope="scope">
+                                    <el-switch v-model="scope.row.status"/>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="操作" width="350px">
+                                <template slot-scope="scope">
+                                    <div class="flex-row flex-center flex-start flex-no-wrap">
+                                        <el-button type="primary" size="mini" style="margin-right: 10px;">综合数据
+                                        </el-button>
+                                        <el-dropdown split-button type="primary" size="mini"
+                                                     style="margin-right: 10px;">
+                                            权限设置
+                                            <el-dropdown-menu slot="dropdown">
+                                                <el-dropdown-item class="flex-row flex-s-b flex-center"
+                                                                  style="height: 30px">
+                                                    AI权限:
+                                                    <el-switch v-model="scope.row.ai" size="mini"></el-switch>
+                                                </el-dropdown-item>
+                                                <el-dropdown-item class="flex-row flex-s-b flex-center"
+                                                                  style="height: 30px">
+                                                    商家设置活动:
+                                                    <el-switch v-model="scope.row.shop" size="mini"></el-switch>
+                                                </el-dropdown-item>
+                                                <el-dropdown-item class="flex-row flex-s-b flex-center"
+                                                                  style="height: 30px">
+                                                    活动是否审核:
+                                                    <el-switch v-model="scope.row.activity" size="mini"></el-switch>
+                                                </el-dropdown-item>
+                                                <el-dropdown-item class="flex-row flex-s-b flex-center"
+                                                                  style="height: 30px">
+                                                    卡券权限:
+                                                    <el-switch v-model="scope.row.card" size="mini"></el-switch>
+                                                </el-dropdown-item>
+                                                <el-dropdown-item class="flex-row flex-s-b flex-center"
+                                                                  style="height: 30px">
+                                                    抽奖权限:
+                                                    <el-switch v-model="scope.row.gift" size="mini"></el-switch>
+                                                </el-dropdown-item>
+                                                <el-dropdown-item class="flex-row flex-s-b flex-center"
+                                                                  style="height: 30px">
+                                                    禁用此商家:
+                                                    <el-switch v-model="scope.row.disableShop" size="mini"></el-switch>
+                                                </el-dropdown-item>
+                                            </el-dropdown-menu>
+                                        </el-dropdown>
+                                        <el-dropdown split-button type="primary" size="mini">
+                                            更多设置
+                                            <el-dropdown-menu slot="dropdown">
+                                                <el-dropdown-item>商家大数据</el-dropdown-item>
+                                                <el-dropdown-item>编辑资料</el-dropdown-item>
+                                                <el-dropdown-item>商家抖音/快手/视频号</el-dropdown-item>
+                                                <el-dropdown-item>充值AI</el-dropdown-item>
+                                                <el-dropdown-item>查看视频库</el-dropdown-item>
+                                                <el-dropdown-item>充值点数</el-dropdown-item>
+                                                <el-dropdown-item>重置默认密码</el-dropdown-item>
+                                                <el-dropdown-item>删除</el-dropdown-item>
+                                            </el-dropdown-menu>
+                                        </el-dropdown>
+                                    </div>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </div>
+                </div>
+                <page-info/>
+            </div>
+        </div>
+        <el-dialog title="权限设置" class="permisson-dia" :visible.sync="permissonDia" width="30%"
+                   :before-close="handleClose">
+            <el-checkbox-group v-model="permissonList" class="permisson-wrap">
+                <el-checkbox label="分组"></el-checkbox>
+                <el-checkbox label="点数余额"></el-checkbox>
+                <el-checkbox label="AI剪辑余额"></el-checkbox>
+                <el-checkbox label="总播放次数"></el-checkbox>
+                <el-checkbox label="核销人员"></el-checkbox>
+                <el-checkbox label="时间"></el-checkbox>
+                <el-checkbox label="LOGO"></el-checkbox>
+                <el-checkbox label="地址"></el-checkbox>
+                <el-checkbox label="已使用点数"></el-checkbox>
+                <el-checkbox label="已使用AI剪辑数"></el-checkbox>
+                <el-checkbox label="时间"></el-checkbox>
+                <el-checkbox label="备注"></el-checkbox>
+            </el-checkbox-group>
+            <div class="button-wrap">
+                <el-button size="small" @click="dialogVisible = false">取 消</el-button>
+                <el-button size="small" type="primary" @click="dialogVisible = false">确 定</el-button>
+            </div>
+        </el-dialog>
+    </div>
+</div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="./common/static.js" type="text/javascript"></script>
+<script src="./components/openPlat.js"></script>
+<script src="./components/leftMenu.js"></script>
+<script src="./components/topMenu.js"></script>
+<script src="./components/pageInfo.js"></script>
+<script type="module">
+    new Vue({
+        el: '#app',
+        data: vm => ({
+            isCollapse: false,
+            defaultMenu: defaultMenu,
+            defaultAvatar: defaultAvatar,
+            shopType: '',
+            options: [
+                {
+                    value: '选项1',
+                    label: '黄金糕',
+                },
+            ],
+            shopName: '',
+            tableData: [{
+                date: '2016-05-02',
+                name: '王小虎',
+                phone: '13111112222',
+                status: true,
+                ai: true,
+                shop: true,
+                activity: true,
+                card: true,
+                gift: true,
+                disableShop: true,
+            }],
+            permissonDia: false,
+            permissonList: [],
+        }),
+        created() {
+            this.isCollapse = document.body.clientWidth <= 1200
+            window.addEventListener('resize', () => {
+                this.isCollapse = document.body.clientWidth <= 1200
+            })
+        },
+        methods: {
+            nextStep() {
+                console.log(this.$refs.plat1.form)
+                console.log(this.$refs.plat2.form)
+            },
+            changeCollapse(isCollapse) {
+                this.isCollapse = isCollapse
+            },
+            handleClose() {
+            },
+        },
+    })
+</script>
+</html>
