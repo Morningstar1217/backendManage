@@ -4,6 +4,10 @@
     display: none !important;
 }
 
+.max-width-900 {
+    max-width: 900px;
+}
+
 .blue {
     color: #3f8cff;
 }
@@ -95,6 +99,11 @@
     height: calc(100% - 68px);
 }
 
+.el-menu .el-menu-item .el-link {
+    display: block;
+    height: 100%;
+}
+
 .el-menu .el-menu-item.is-active a {
     color: #3c8fcc;
 }
@@ -165,6 +174,7 @@
 .container .content .main-content .button-wrap {
     padding-top: 40px;
     text-align: center;
+    margin: 0 auto;
 }
 
 .content .plat-type-wrap {
@@ -222,7 +232,40 @@
     padding: 10px 0;
 }
 
-.permisson-dia .button-wrap {
+.el-dialog .button-wrap {
     text-align: right;
     margin-top: 10px;
+}
+
+.main-content .table-content .add-shop-form {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    margin-left: 100px;
+}
+
+.avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+}
+
+.avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 150px;
+    height: 150px;
+    line-height: 150px !important;
+    text-align: center;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    display: block;
 }

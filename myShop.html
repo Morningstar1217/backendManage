@@ -74,7 +74,7 @@
                                     <div class="flex-row flex-center flex-start flex-no-wrap">
                                         <el-button type="primary" size="mini" style="margin-right: 10px;">综合数据
                                         </el-button>
-                                        <el-dropdown split-button type="primary" size="mini"
+                                        <el-dropdown split-button type="primary" size="mini" :hide-on-click="false"
                                                      style="margin-right: 10px;">
                                             权限设置
                                             <el-dropdown-menu slot="dropdown">
@@ -110,15 +110,16 @@
                                                 </el-dropdown-item>
                                             </el-dropdown-menu>
                                         </el-dropdown>
-                                        <el-dropdown split-button type="primary" size="mini">
+                                        <el-dropdown split-button type="primary" size="mini"
+                                                     @command="(command)=>{clickMenu(command,scope.row)}">
                                             更多设置
                                             <el-dropdown-menu slot="dropdown">
                                                 <el-dropdown-item>商家大数据</el-dropdown-item>
                                                 <el-dropdown-item>编辑资料</el-dropdown-item>
                                                 <el-dropdown-item>商家抖音/快手/视频号</el-dropdown-item>
-                                                <el-dropdown-item>充值AI</el-dropdown-item>
+                                                <el-dropdown-item command="addAI">充值AI</el-dropdown-item>
                                                 <el-dropdown-item>查看视频库</el-dropdown-item>
-                                                <el-dropdown-item>充值点数</el-dropdown-item>
+                                                <el-dropdown-item command="addCount">充值点数</el-dropdown-item>
                                                 <el-dropdown-item>重置默认密码</el-dropdown-item>
                                                 <el-dropdown-item>删除</el-dropdown-item>
                                             </el-dropdown-menu>
@@ -151,6 +152,14 @@
             <div class="button-wrap">
                 <el-button size="small" @click="permissonDia = false">取 消</el-button>
                 <el-button size="small" type="primary" @click="permissonDia = false">确 定</el-button>
+            </div>
+        </el-dialog>
+        <el-dialog title="充值点数" class="permisson-dia" :visible.sync="countDia" width="30%"
+                   :before-close="handleCloseCount">
+
+            <div class="button-wrap">
+                <el-button size="small" @click="countDia = false">取 消</el-button>
+                <el-button size="small" type="primary" @click="countDia = false">确 定</el-button>
             </div>
         </el-dialog>
     </div>
@@ -192,6 +201,7 @@
             }],
             permissonDia: false,
             permissonList: [],
+            countDia: false,
         }),
         created() {
             this.isCollapse = document.body.clientWidth <= 1200
@@ -209,6 +219,18 @@
             },
             handleClose() {
                 this.permissonDia = false
+            },
+            handleCloseCount() {
+                this.countDia = false
+            },
+            clickMenu(val, item) {
+                switch (val) {
+                    case 'addAI':
+                        break
+                    case 'addCount':
+                        this.countDia = true
+                        break
+                }
             },
         },
     })
