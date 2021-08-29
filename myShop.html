@@ -58,9 +58,9 @@
                             </el-table-column>
                             <el-table-column prop="phone" label="手机号">
                             </el-table-column>
-                            <el-table-column prop="phone" label="点数余额">
+                            <el-table-column prop="count" label="点数余额">
                             </el-table-column>
-                            <el-table-column prop="phone" label="AI剪辑余额">
+                            <el-table-column prop="aiCount" label="AI剪辑余额">
                             </el-table-column>
                             <el-table-column prop="phone" label="总播放次数">
                             </el-table-column>
@@ -156,10 +156,28 @@
         </el-dialog>
         <el-dialog title="充值点数" class="permisson-dia" :visible.sync="countDia" width="30%"
                    :before-close="handleCloseCount">
-
+            <div class="list-title">充值商家名称：<span>{{ chooseShop.name }}</span></div>
+            <div class="list-title">您的点数余额：<span>{{ chooseShop.count }}</span></div>
+            <div class="list-title">本次充值点数：
+                <el-input type="number" v-model="countInp" size="small" style="width: 100px"></el-input>
+            </div>
+            <div class="list-title">单次充值为10的整数倍</div>
             <div class="button-wrap">
                 <el-button size="small" @click="countDia = false">取 消</el-button>
-                <el-button size="small" type="primary" @click="countDia = false">确 定</el-button>
+                <el-button size="small" type="primary" @click="countDia = false">充值点数</el-button>
+            </div>
+        </el-dialog>
+        <el-dialog title="充值AI点数" class="permisson-dia" :visible.sync="AiDia" width="30%"
+                   :before-close="handleCloseAi">
+            <div class="list-title">充值商家名称：<span>{{ chooseShop.name }}</span></div>
+            <div class="list-title">您的AI余额：<span>{{ chooseShop.aiCount }}</span></div>
+            <div class="list-title">本次充值点数：
+                <el-input type="number" v-model="aiInp" size="small" style="width: 100px"></el-input>
+            </div>
+            <div class="list-title">单次充值为100的整数倍</div>
+            <div class="button-wrap">
+                <el-button size="small" @click="AiDia = false">取 消</el-button>
+                <el-button size="small" type="primary" @click="AiDia = false">充值点数</el-button>
             </div>
         </el-dialog>
     </div>
@@ -191,7 +209,9 @@
                 date: '2016-05-02',
                 name: '王小虎',
                 phone: '13111112222',
+                count: 11,
                 status: true,
+                aiCount: 1000,
                 ai: true,
                 shop: true,
                 activity: true,
@@ -202,6 +222,10 @@
             permissonDia: false,
             permissonList: [],
             countDia: false,
+            countInp: '',
+            chooseShop: {},
+            AiDia: false,
+            aiInp: '',
         }),
         created() {
             this.isCollapse = document.body.clientWidth <= 1200
@@ -221,11 +245,20 @@
                 this.permissonDia = false
             },
             handleCloseCount() {
+                this.chooseShop = {}
+                this.countInp = ''
                 this.countDia = false
             },
+            handleCloseAi() {
+                this.chooseShop = {}
+                this.aiInp = ''
+                this.AiDia = false
+            },
             clickMenu(val, item) {
+                this.chooseShop = item
                 switch (val) {
                     case 'addAI':
+                        this.AiDia = true
                         break
                     case 'addCount':
                         this.countDia = true
