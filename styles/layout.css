@@ -104,6 +104,11 @@
     height: 100%;
 }
 
+.container .el-dropdown-item .el-link {
+    font-size: 12px;
+    display: block;
+}
+
 .el-menu .el-menu-item.is-active a {
     color: #3c8fcc;
 }
@@ -137,7 +142,8 @@
     transition: .4s;
 }
 
-.container .content .top-menu.closeMenu {
+.container .content .top-menu.closeMenu,
+.container .content .main-content .page-info.closeMenu {
     padding-left: 84px;
 }
 
@@ -157,7 +163,7 @@
 }
 
 .container .content .main-content {
-    padding: 88px 20px 20px;
+    padding: 88px 20px 110px;
 }
 
 .container .content .main-content .form-wrap {
@@ -202,7 +208,16 @@
 }
 
 .container .main-content .page-info {
-    margin-top: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    width: 100%;
+    padding: 10px 20px 10px 280px;
+    z-index: 10;
+    background-color: #fff;
+    left: 0;
+    bottom: 0;
+    box-shadow: 0 -2px 6px 0 #CECECE;
+    transition: .4s;
 }
 
 .container .main-content .page-info .info-content {
@@ -275,3 +290,74 @@
     height: 150px;
     display: block;
 }
+
+.container .data-blank-title {
+    margin: 20px 0;
+}
+
+.container .data-block-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container .data-block-wrap .data-block-list {
+    box-sizing: border-box;
+    width: 240px;
+    height: 120px;
+    border-radius: 2px;
+    color: #fff;
+    padding: 15px;
+}
+
+.container .team-data-block-wrap .data-block-list {
+    width: 33%;
+}
+
+.container .data-block-wrap .data-block-list:nth-child(1) {
+    background: linear-gradient(180deg, #2CABF8 0%, #4087FF 100%);
+    box-shadow: 0 6px 6px 0 #CECECE;
+}
+
+.container .data-block-wrap .data-block-list:nth-child(2) {
+    background: linear-gradient(180deg, #88C6FE 0%, #23C1D9 100%);
+    box-shadow: 0 6px 6px 0 rgba(206, 206, 206, 0.6);
+}
+
+.container .data-block-wrap .data-block-list:nth-child(3) {
+    background: linear-gradient(180deg, #F6DA6A 0%, #EFC10C 100%);
+    box-shadow: 0 6px 6px 0 rgba(206, 206, 206, 0.6);
+}
+
+.container .data-block-wrap .data-block-list:nth-child(4) {
+    background: linear-gradient(180deg, #FF8CAB 0%, #FF7BA2 100%);
+    box-shadow: 0 6px 6px 0 rgba(206, 206, 206, 0.6);
+}
+
+.container .data-block-list .number-title {
+    font-size: 14px;
+    margin-bottom: 14px;
+}
+
+.container .data-block-list .number-content {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.container .echart-wrap {
+    max-width: 1200px;
+    padding: 20px 0;
+    margin: 0 auto;
+}
+
+.container .echart-wrap .echartC {
+    display: block;
+    margin: 0 auto;
+    width: 500px;
+    height: 300px;
+}
+
+.container .echart-wrap .echartD {
+    width: 600px;
+    height: 300px;
+}
+

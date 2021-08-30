@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <link rel="stylesheet" href="">
+    <meta charset="UTF-8">
+    <title>开放平台对接</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./styles/layout.css">
+    <link rel="stylesheet" href="./element-ui/index.css">
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="container flex-row">
+        <div>
+            <left-menu active-menu="2-1" :default-menu="defaultMenu" :is-collapse="isCollapse"/>
+        </div>
+        <div class="content" :class="{closeMenu:isCollapse}">
+            <div>
+                <top-menu :is-collapse="isCollapse" :default-avatar="defaultAvatar" @change-collapse="changeCollapse"/>
+            </div>
+            <div class="main-content">
+                <div class="table-wrap">
+                    <div class="table-top flex-row flex-center flex-start">
+                        <el-radio-group v-model="platType" size="small" style="margin-right: 20px;">
+                            <el-radio-button label="抖音"></el-radio-button>
+                            <el-radio-button label="快手"></el-radio-button>
+                            <el-radio-button label="视频号"></el-radio-button>
+                        </el-radio-group>
+                        <el-button size="small" type="text">今天</el-button>
+                        <el-button size="small" type="text">本周</el-button>
+                        <el-button size="small" type="text">本月</el-button>
+                        <el-button size="small" type="text">所有</el-button>
+                        <el-button size="small" type="text">按周期显示</el-button>
+                        <el-select v-model="shopName" style="width: 120px;margin: 0 20px" size="small" placeholder="商户名"
+                                   clearable>
+                        </el-select>
+                        <el-button size="small" type="primary">搜索</el-button>
+                        <el-button size="small" type="primary">恢复默认顺序</el-button>
+                        <el-button size="small" type="primary">刷新</el-button>
+                    </div>
+                    <div class="data-blank-title font-weight">数据走势图</div>
+                    <div class="data-block-wrap flex-row flex-center flex-start flex-s-b">
+                        <div class="data-block-list">
+                            <div class="number-content">{{ shopNum }}</div>
+                            <div class="number-title">到店参与人数</div>
+                        </div>
+                        <div class="data-block-list">
+                            <div class="number-content">{{ playNum }}</div>
+                            <div class="number-title">总播放次数</div>
+                        </div>
+                        <div class="data-block-list">
+                            <div class="number-content">{{ likeNum }}</div>
+                            <div class="number-title">总点赞数</div>
+                        </div>
+                        <div class="data-block-list">
+                            <div class="number-content">{{ commitNum }}</div>
+                            <div class="number-title">总评论次数</div>
+                        </div>
+                    </div>
+                    <div class="echart-wrap flex-row flex-center flex-s-b">
+                        <div class="echartD" ref="echartD" id="echartD"></div>
+                        <div class="echartC" ref="echartC" id="echartC"></div>
+                    </div>
+                    <div class="table-content">
+                        <el-table :data="tableData">
+                            <el-table-column prop="date" label="活动编号">
+                            </el-table-column>
+                            <el-table-column prop="name" label="活动名称">
+                            </el-table-column>
+                            <el-table-column prop="phone" label="播放数">
+                            </el-table-column>
+                            <el-table-column prop="count" label="点赞数">
+                            </el-table-column>
+                            <el-table-column prop="aiCount" label="评论数">
+                            </el-table-column>
+                            <el-table-column prop="phone" label="参加人数">
+                            </el-table-column>
+                            <el-table-column prop="phone" label="现场领券数">
+                            </el-table-column>
+                            <el-table-column prop="phone" label="核销数">
+                            </el-table-column>
+                            <el-table-column prop="phone" label="实物奖品">
+                            </el-table-column>
+                        </el-table>
+                    </div>
+                </div>
+                <page-info :is-collapse="isCollapse"/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="./common/static.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script src="./components/openPlat.js"></script>
+<script src="./components/leftMenu.js"></script>
+<script src="./components/topMenu.js"></script>
+<script src="./components/pageInfo.js"></script>
+<script type="module">
+    new Vue({
+        el: '#app',
+        data: vm => ({
+            isCollapse: false,
+            defaultMenu: defaultMenu,
+            defaultAvatar: defaultAvatar,
+            platType: '抖音',
+            shopName: '',
+            shopNum: 1000,
+            playNum: 2000,
+            likeNum: 3000,
+            commitNum: 4000,
+            tableData: [{
+                date: '2016-05-02',
+                name: '王小虎',
+                phone: '13111112222',
+                count: 11,
+                status: true,
+                aiCount: 1000,
+                ai: true,
+                shop: true,
+                activity: true,
+                card: true,
+                gift: true,
+                disableShop: true,
+            }],
+            devData: {
+                weike: 111,
+                video: 100,
+            },
+        }),
+        created() {
+            this.isCollapse = document.body.clientWidth <= 1200
+            window.addEventListener('resize', () => {
+                this.isCollapse = document.body.clientWidth <= 1200
+            })
+        },
+        mounted() {
+            this.getEchartC()
+            this.getEchartD()
+        },
+        methods: {
+            changeCollapse(isCollapse) {
+                this.isCollapse = isCollapse
+            },
+            getEchartC() {
+                let dom = document.getElementById('echartC')
+                let myChart = echarts.init(dom)
+                let app = {}
+                let option
+                option = {
+                    tooltip: {
+                        trigger: 'item',
+                    },
+                    legend: {
+                        top: '8%',
+                        left: 'center',
+                    },
+                    series: [
+                        {
+                            name: '现场未核销数',
+                            type: 'pie',
+                            radius: ['40%', '70%'],
+                            avoidLabelOverlap: false,
+                            label: {
+                                show: false,
+                                position: 'center',
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                    fontSize: '14',
+                                    fontWeight: 'bold',
+                                },
+                            },
+                            labelLine: {
+                                show: false,
+                            },
+                            data: [
+                                { value: 1048, name: '现场核销数' },
+                                { value: 735, name: '现场未核销数' },
+                            ],
+                            top: 50,
+                        },
+                    ],
+                    title: {
+                        text: '核销数',
+                    },
+                }
+
+                if (option && typeof option === 'object') {
+                    myChart.setOption(option)
+                }
+            },
+            getEchartD() {
+                var chartDom = document.getElementById('echartD')
+                var myChart = echarts.init(chartDom)
+                var option
+
+                option = {
+                    title: {
+                        text: '点赞播放数',
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                    },
+                    legend: {
+                        data: ['播放数', '点赞数'],
+                    },
+                    grid: {
+                        left: '1%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true,
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                    },
+                    yAxis: {
+                        type: 'value',
+                    },
+                    series: [
+                        {
+                            name: '播放数',
+                            type: 'line',
+                            stack: '总量',
+                            data: [120, 132, 101, 134, 90, 230, 210],
+                        },
+                        {
+                            name: '点赞数',
+                            type: 'line',
+                            stack: '总量',
+                            data: [220, 182, 191, 234, 290, 330, 310],
+                        },
+                    ],
+                }
+
+                option && myChart.setOption(option)
+            },
+        },
+    })
+</script>
+</html>
