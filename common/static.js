@@ -4,17 +4,17 @@ const defaultMenu = [
         index: '1',
         children: [
             {
-                title: '开放平台对接',
+                title: '开放平台设置',
                 index: '1',
                 path: 'index.html',
             },
             {
-                title: 'AI平台对接',
+                title: 'AI混剪设置',
                 index: '2',
                 path: 'aiPlat.html',
             },
             {
-                title: '通用参数设置',
+                title: '参数设置',
                 index: '3',
                 path: 'setting.html',
             },
@@ -30,6 +30,16 @@ const defaultMenu = [
                 index: '1',
                 path: 'myShop.html',
             },
+            {
+                title: '添加分类及商户',
+                index: '2',
+                path: 'addShop.html',
+            },
+            {
+                title: '综合数据',
+                index: '3',
+                path: 'dataBlank.html',
+            },
         ],
         icon: 'el-icon-s-shop',
     },
@@ -42,6 +52,11 @@ const defaultMenu = [
                 index: '1',
                 path: 'myTeam.html',
             },
+            {
+                title: '商户详情',
+                index: '2',
+                path: 'shopList.html',
+            },
         ],
         icon: 'el-icon-user-solid',
     },
@@ -50,12 +65,29 @@ const defaultMenu = [
         index: '4',
         children: [
             {
-                title: '活动管理',
+                title: '活动列表',
                 index: '1',
                 path: 'activity.html',
             },
+            {
+                title: '数据统计',
+                index: '2',
+                path: 'activeDataBlank.html',
+            },
         ],
         icon: 'el-icon-date',
+    },
+    {
+        title: '用户管理',
+        index: '5',
+        children: [
+            {
+                title: '用户管理',
+                index: '1',
+                path: 'userManage.html',
+            },
+        ],
+        icon: 'el-icon-user',
     },
 ]
 const defaultAvatar = '../images/avatar.jpg'

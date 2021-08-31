@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="">
     <meta charset="UTF-8">
-    <title>我的商户</title>
+    <title>用户管理</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="./styles/layout.css">
     <link rel="stylesheet" href="./element-ui/index.css">
@@ -12,7 +12,7 @@
 <div id="app" v-cloak>
     <div class="container flex-row">
         <div>
-            <left-menu active-menu="2-1" :default-menu="defaultMenu" :is-collapse="isCollapse"/>
+            <left-menu active-menu="5-1" :default-menu="defaultMenu" :is-collapse="isCollapse"/>
         </div>
         <div class="content" :class="{closeMenu:isCollapse}">
             <div>
@@ -23,109 +23,50 @@
                     <div class="table-top flex-row flex-center flex-start flex-s-b">
                         <div class="left flex-row flex-center flex-start flex-no-wrap">
                             <div class="flex-row flex-center flex-start flex-no-wrap">
-                                <el-select style="width: 120px" size="small" v-model="shopType" placeholder="所属类别"
-                                           clearable>
-                                    <el-option
-                                            v-for="item in options"
-                                            :key="item.value"
-                                            :label="item.label"
-                                            :value="item.value">
-                                    </el-option>
-                                </el-select>
-                                <el-input style="width: 120px;margin: 0 10px" size="small" v-model="shopName"
-                                          placeholder="商户名称"/>
+                                <el-input style="width: 120px;margin-right: 10px;" size="small" v-model="userName"
+                                          placeholder="昵称筛选"></el-input>
+                                <el-input style="width: 120px;margin-right: 10px;" size="small" v-model="userNo"
+                                          placeholder="活动编号"></el-input>
+                                <el-input style="width: 120px;margin-right: 10px;" size="small" v-model="userAddress"
+                                          placeholder="所属地区"></el-input>
+                                <el-input style="width: 120px;margin-right: 10px;" size="small" v-model="userPhone"
+                                          placeholder="手机号"></el-input>
                             </div>
+                            <el-button size="small" type="warning">搜索</el-button>
                             <el-button size="small" type="warning">刷新</el-button>
-                            <el-button size="small" type="warning">按默认排序</el-button>
-                            <el-button size="small" type="warning">按点数使用排序</el-button>
-                            <el-button size="small" type="warning">按AI使用次数排序</el-button>
                         </div>
                         <div class="right flex-row flex-center flex-start">
                             <el-button size="small" type="primary">
-                                <el-link :underline="false" href="addShop.html">+ 添加分类</el-link>
+                                <el-link :underline="false" href="">+ 添加分类</el-link>
                             </el-button>
                             <el-button size="small" type="primary">
-                                <el-link :underline="false" href="addShop.html">+ 添加商户</el-link>
+                                <el-link :underline="false" href="">+ 添加商户</el-link>
                             </el-button>
                             <i class="el-icon-s-grid pointer grid" @click="permissonDia=true"></i>
                         </div>
                     </div>
                     <div class="table-content">
                         <el-table :data="tableData">
-                            <el-table-column prop="date" label="商户ID">
+                            <el-table-column type="index" label="编号">
                             </el-table-column>
-                            <el-table-column prop="name" label="商户名称">
+                            <el-table-column prop="name" label="昵称">
                             </el-table-column>
                             <el-table-column prop="phone" label="手机号">
                             </el-table-column>
-                            <el-table-column prop="count" label="点数余额">
+                            <el-table-column prop="count" label="openid">
                             </el-table-column>
-                            <el-table-column prop="aiCount" label="AI剪辑余额">
+                            <el-table-column prop="aiCount" label="所属地区">
                             </el-table-column>
-                            <el-table-column prop="phone" label="总播放次数">
+                            <el-table-column prop="phone" label="参与数据">
                             </el-table-column>
-                            <el-table-column label="状态">
+                            <el-table-column label="是否拉黑">
                                 <template slot-scope="scope">
                                     <el-switch v-model="scope.row.status"/>
                                 </template>
                             </el-table-column>
-                            <el-table-column label="操作" width="350px">
+                            <el-table-column label="操作">
                                 <template slot-scope="scope">
-                                    <div class="flex-row flex-center flex-start flex-no-wrap">
-                                        <el-button type="primary" size="mini" style="margin-right: 10px;">
-                                            <el-link :underline="false" href="dataBlank.html">综合数据</el-link>
-                                        </el-button>
-                                        <el-dropdown split-button type="primary" size="mini" :hide-on-click="false"
-                                                     style="margin-right: 10px;">
-                                            权限设置
-                                            <el-dropdown-menu slot="dropdown">
-                                                <el-dropdown-item class="flex-row flex-s-b flex-center"
-                                                                  style="height: 30px">
-                                                    AI权限:
-                                                    <el-switch v-model="scope.row.ai" size="mini"></el-switch>
-                                                </el-dropdown-item>
-                                                <el-dropdown-item class="flex-row flex-s-b flex-center"
-                                                                  style="height: 30px">
-                                                    商家设置活动:
-                                                    <el-switch v-model="scope.row.shop" size="mini"></el-switch>
-                                                </el-dropdown-item>
-                                                <el-dropdown-item class="flex-row flex-s-b flex-center"
-                                                                  style="height: 30px">
-                                                    活动是否审核:
-                                                    <el-switch v-model="scope.row.activity" size="mini"></el-switch>
-                                                </el-dropdown-item>
-                                                <el-dropdown-item class="flex-row flex-s-b flex-center"
-                                                                  style="height: 30px">
-                                                    卡券权限:
-                                                    <el-switch v-model="scope.row.card" size="mini"></el-switch>
-                                                </el-dropdown-item>
-                                                <el-dropdown-item class="flex-row flex-s-b flex-center"
-                                                                  style="height: 30px">
-                                                    抽奖权限:
-                                                    <el-switch v-model="scope.row.gift" size="mini"></el-switch>
-                                                </el-dropdown-item>
-                                                <el-dropdown-item class="flex-row flex-s-b flex-center"
-                                                                  style="height: 30px">
-                                                    禁用此商家:
-                                                    <el-switch v-model="scope.row.disableShop" size="mini"></el-switch>
-                                                </el-dropdown-item>
-                                            </el-dropdown-menu>
-                                        </el-dropdown>
-                                        <el-dropdown split-button type="primary" size="mini"
-                                                     @command="(command)=>{clickMenu(command,scope.row)}">
-                                            更多设置
-                                            <el-dropdown-menu slot="dropdown">
-                                                <el-dropdown-item>商家大数据</el-dropdown-item>
-                                                <el-dropdown-item>编辑资料</el-dropdown-item>
-                                                <el-dropdown-item command="platType">商家抖音/快手/视频号</el-dropdown-item>
-                                                <el-dropdown-item command="addAI">充值AI</el-dropdown-item>
-                                                <el-dropdown-item>查看视频库</el-dropdown-item>
-                                                <el-dropdown-item command="addCount">充值点数</el-dropdown-item>
-                                                <el-dropdown-item>重置默认密码</el-dropdown-item>
-                                                <el-dropdown-item>删除</el-dropdown-item>
-                                            </el-dropdown-menu>
-                                        </el-dropdown>
-                                    </div>
+                                    <el-button type="danger" size="mini">删除</el-button>
                                 </template>
                             </el-table-column>
                         </el-table>
@@ -265,6 +206,10 @@
             platTypeDia: false,
             platType: '抖音',
             form: {},
+            userName: '',
+            userNo: '',
+            userAddress: '',
+            userPhone: '',
         }),
         created() {
             this.isCollapse = document.body.clientWidth <= 1200

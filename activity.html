@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="">
     <meta charset="UTF-8">
-    <title>开放平台对接</title>
+    <title>活动列表</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="./styles/layout.css">
     <link rel="stylesheet" href="./element-ui/index.css">
@@ -50,13 +50,13 @@
                             <el-button size="small" type="warning">搜索</el-button>
                         </div>
                         <div class="right flex-row flex-center flex-start">
-                            <el-button size="small" type="primary">
+                            <el-button size="small" @click="openDia(1)" type="primary">
                                 <el-link :underline="false">+ 添加抖音活动</el-link>
                             </el-button>
-                            <el-button size="small" type="primary">
+                            <el-button size="small" @click="openDia(2)" type="primary">
                                 <el-link :underline="false">+ 添加快手活动</el-link>
                             </el-button>
-                            <el-button size="small" type="primary">
+                            <el-button size="small" @click="openDia(3)" type="primary">
                                 <el-link :underline="false">+ 添加视频号活动</el-link>
                             </el-button>
                         </div>
@@ -105,16 +105,26 @@
                                                      @command="(command)=>{clickMenu(command,scope.row)}">
                                             更多
                                             <el-dropdown-menu slot="dropdown">
-                                                <el-dropdown-item>延时推送设置</el-dropdown-item>
                                                 <el-dropdown-item>复制活动ID</el-dropdown-item>
                                                 <el-dropdown-item>视频库查看</el-dropdown-item>
                                                 <el-dropdown-item>我的卡券二维码</el-dropdown-item>
                                                 <el-dropdown-item>充值点数</el-dropdown-item>
                                                 <el-dropdown-item>复制活动</el-dropdown-item>
-                                                <el-dropdown-item>编辑活动</el-dropdown-item>
-                                                <el-dropdown-item>小程序配置</el-dropdown-item>
+                                                <el-dropdown-item>原AI配置</el-dropdown-item>
+                                                <el-dropdown-item>抖音小程序</el-dropdown-item>
+                                                <el-dropdown-item>微信小程序</el-dropdown-item>
                                                 <el-dropdown-item>活动定位和跳转</el-dropdown-item>
+                                                <el-dropdown-item>数据统计</el-dropdown-item>
                                                 <el-dropdown-item>删除</el-dropdown-item>
+                                                <el-dropdown-item>活动编辑</el-dropdown-item>
+                                                <el-dropdown-item>活动介绍</el-dropdown-item>
+                                                <el-dropdown-item>页面配置</el-dropdown-item>
+                                                <el-dropdown-item>接口权限</el-dropdown-item>
+                                                <el-dropdown-item>延时推送设置</el-dropdown-item>
+                                                <el-dropdown-item>卡券选择</el-dropdown-item>
+                                                <el-dropdown-item>我的卡券二维码</el-dropdown-item>
+                                                <el-dropdown-item>抽奖设置</el-dropdown-item>
+                                                <el-dropdown-item>中奖记录</el-dropdown-item>
                                             </el-dropdown-menu>
                                         </el-dropdown>
                                     </div>
@@ -131,86 +141,38 @@
                 <page-info :is-collapse="isCollapse"/>
             </div>
         </div>
-        <el-dialog title="权限设置" class="permisson-dia" :visible.sync="permissonDia" width="30%"
+        <el-dialog title="添加活动" :visible.sync="addActivityDia" width="500px"
                    :before-close="handleClose">
-            <el-checkbox-group v-model="permissonList" class="permisson-wrap">
-                <el-checkbox label="分组"></el-checkbox>
-                <el-checkbox label="点数余额"></el-checkbox>
-                <el-checkbox label="AI剪辑余额"></el-checkbox>
-                <el-checkbox label="总播放次数"></el-checkbox>
-                <el-checkbox label="核销人员"></el-checkbox>
-                <el-checkbox label="时间"></el-checkbox>
-                <el-checkbox label="LOGO"></el-checkbox>
-                <el-checkbox label="地址"></el-checkbox>
-                <el-checkbox label="已使用点数"></el-checkbox>
-                <el-checkbox label="已使用AI剪辑数"></el-checkbox>
-                <el-checkbox label="时间"></el-checkbox>
-                <el-checkbox label="备注"></el-checkbox>
-            </el-checkbox-group>
-            <div class="button-wrap">
-                <el-button size="small" @click="permissonDia = false">取 消</el-button>
-                <el-button size="small" type="primary" @click="permissonDia = false">确 定</el-button>
-            </div>
-        </el-dialog>
-        <el-dialog title="充值点数" class="permisson-dia" :visible.sync="countDia" width="30%"
-                   :before-close="handleCloseCount">
-            <div class="list-title">充值商家名称：<span>{{ chooseShop.name }}</span></div>
-            <div class="list-title">您的点数余额：<span>{{ chooseShop.count }}</span></div>
-            <div class="list-title">本次充值点数：
-                <el-input type="number" v-model="countInp" size="small" style="width: 100px"></el-input>
-            </div>
-            <div class="list-title">单次充值为10的整数倍</div>
-            <div class="button-wrap">
-                <el-button size="small" @click="countDia = false">取 消</el-button>
-                <el-button size="small" type="primary" @click="countDia = false">充值点数</el-button>
-            </div>
-        </el-dialog>
-        <el-dialog title="充值AI点数" class="permisson-dia" :visible.sync="AiDia" width="30%"
-                   :before-close="handleCloseAi">
-            <div class="list-title">充值商家名称：<span>{{ chooseShop.name }}</span></div>
-            <div class="list-title">您的AI余额：<span>{{ chooseShop.aiCount }}</span></div>
-            <div class="list-title">本次充值点数：
-                <el-input type="number" v-model="aiInp" size="small" style="width: 100px"></el-input>
-            </div>
-            <div class="list-title">单次充值为100的整数倍</div>
-            <div class="button-wrap">
-                <el-button size="small" @click="AiDia = false">取 消</el-button>
-                <el-button size="small" type="primary" @click="AiDia = false">充值点数</el-button>
-            </div>
-        </el-dialog>
-        <el-dialog title="商家抖音/快手/视频号" class="permisson-dia" :visible.sync="platTypeDia"
-                   :before-close="handleClosePlat">
-            <el-radio-group v-model="platType" style="margin-bottom: 20px;">
-                <el-radio-button label="抖音"></el-radio-button>
-                <el-radio-button label="快手"></el-radio-button>
-                <el-radio-button label="视频号"></el-radio-button>
-            </el-radio-group>
-            <el-form inline label-width="120px" label-position="right">
-                <el-form-item :label="platType+'主页链接:'">
-                    <el-input size="small" v-model="form.a" style="width:300px"></el-input>
+            <el-form inline label-width="90px" label-position="right">
+                <el-form-item label="活动名称:">
+                    <el-input size="small" v-model="form.key" style="width:300px"></el-input>
                 </el-form-item>
-                <el-form-item :label="(platType)+'商户名称:'">
-                    <el-input size="small" v-model="form.b" style="width:300px"></el-input>
+                <el-form-item label="绑定商户:">
+                    <el-input size="small" v-model="form.secret" style="width:300px"></el-input>
                 </el-form-item>
-                <el-form-item :label="(platType)+'联系地址:'">
-                    <el-input size="small" v-model="form.c" style="width:300px"></el-input>
+                <el-form-item label="推送频率:">
+                    <el-input size="small" v-model="form.url" style="width:300px"></el-input>
                 </el-form-item>
-                <el-form-item :label="(platType)+'商户身份:'">
-                    <el-input size="small" v-model="form.d" style="width:300px"></el-input>
+                <el-form-item label="投放点数:">
+                    <el-input size="small" v-model="form.time" style="width:300px"></el-input>
                 </el-form-item>
-                <el-form-item :label="(platType)+'商户位置:'">
-                    <el-input size="small" v-model="form.f" style="width:300px"></el-input>
+                <el-form-item label="有效期限:">
+                    <el-input size="small" v-model="form.time" style="width:300px"></el-input>
                 </el-form-item>
-                <el-form-item label="推送视频时机:">
-                    <el-radio-group v-model="form.e" style="width:300px">
-                        <el-radio :label="1">弹窗确定推送</el-radio>
-                        <el-radio :label="2">领取奖品推送</el-radio>
-                    </el-radio-group>
+                <el-form-item label="选择模式:">
+                    <el-select style="width: 300px" size="small" v-model="cardModel" placeholder="卡券模式"
+                               clearable>
+                        <el-option
+                                v-for="item in options"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                        </el-option>
+                    </el-select>
                 </el-form-item>
             </el-form>
             <div class="button-wrap">
-                <el-button size="small" @click="platTypeDia = false">下一项</el-button>
-                <el-button size="small" type="primary" @click="platTypeDia = false">保存</el-button>
+                <el-button size="small" type="primary" @click="handleClose">确认添加</el-button>
             </div>
         </el-dialog>
     </div>
@@ -252,16 +214,10 @@
                 gift: true,
                 disableShop: true,
             }],
-            permissonDia: false,
-            permissonList: [],
-            countDia: false,
-            countInp: '',
-            chooseShop: {},
-            AiDia: false,
-            aiInp: '',
-            platTypeDia: false,
-            platType: '抖音',
+            addActivityDia: false,
             form: {},
+            acType: '',
+            cardModel: '',
         }),
         created() {
             this.isCollapse = document.body.clientWidth <= 1200
@@ -270,32 +226,11 @@
             })
         },
         methods: {
-            nextStep() {
-                console.log(this.$refs.plat1.form)
-                console.log(this.$refs.plat2.form)
-            },
             changeCollapse(isCollapse) {
                 this.isCollapse = isCollapse
             },
-            handleClose() {
-                this.permissonDia = false
-            },
-            handleCloseCount() {
-                this.chooseShop = {}
-                this.countInp = ''
-                this.countDia = false
-            },
-            handleCloseAi() {
-                this.chooseShop = {}
-                this.aiInp = ''
-                this.AiDia = false
-            },
-            handleClosePlat() {
-                this.platTypeDia = false
-            },
             clickMenu(val, item) {
                 this.chooseShop = item
-                console.log(val)
                 switch (val) {
                     case 'addAI':
                         this.AiDia = true
@@ -307,6 +242,13 @@
                         this.platTypeDia = true
                         break
                 }
+            },
+            handleClose() {
+                this.addActivityDia = false
+            },
+            openDia(index) {
+                this.acType = index
+                this.addActivityDia = true
             },
         },
     })
