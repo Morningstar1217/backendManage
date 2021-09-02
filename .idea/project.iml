@@ -15,5 +15,6 @@
     <orderEntry type="library" name="element-ui" level="application" />
     <orderEntry type="library" name="vue-particles" level="application" />
     <orderEntry type="library" name="particles" level="application" />
+    <orderEntry type="library" name="vue-clipboard2" level="application" />
   </component>
 </module>
