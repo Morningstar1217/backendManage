@@ -32,9 +32,9 @@
                                             :value="item.value">
                                     </el-option>
                                 </el-select>
-                                <el-input style="width: 120px;margin: 0 10px" size="small" v-model="shopName"
+                                <el-input style="width: 120px;margin: 0 10px" v-model="shopName"
                                           placeholder="按商户名"/>
-                                <el-select style="width: 120px" size="small" v-model="shopType" placeholder="按活动方式"
+                                <el-select style="width: 120px" v-model="shopType" placeholder="按活动方式"
                                            clearable>
                                     <el-option
                                             v-for="item in options"
@@ -44,10 +44,10 @@
                                     </el-option>
                                 </el-select>
                             </div>
-                            <el-button size="small" type="warning">按默认排序</el-button>
-                            <el-button size="small" type="warning">按剩余点数</el-button>
-                            <el-button size="small" type="warning">按AI剩余次数</el-button>
-                            <el-button size="small" type="warning">搜索</el-button>
+                            <el-button>按默认排序</el-button>
+                            <el-button>按剩余点数</el-button>
+                            <el-button>按AI剩余次数</el-button>
+                            <el-button>搜索</el-button>
                         </div>
                         <div class="right flex-row flex-center flex-start">
                             <el-button size="small" @click="openDia(1)" type="primary">
@@ -69,12 +69,12 @@
                             </el-table-column>
                             <el-table-column prop="phone" label="活动名称">
                             </el-table-column>
-                            <el-table-column label="视频已使用/剩余">
+                            <el-table-column label="视频已使用/剩余" width="125">
                                 <template slot-scope="scope">
                                     <div>{{ scope.row.count }}/{{ scope.row.phone }}</div>
                                 </template>
                             </el-table-column>
-                            <el-table-column label="点数已使用/剩余">
+                            <el-table-column label="点数已使用/剩余" width="125">
                                 <template slot-scope="scope">
                                     <div>{{ scope.row.count }}/{{ scope.row.phone }}</div>
                                 </template>
@@ -105,26 +105,32 @@
                                                      @command="(command)=>{clickMenu(command,scope.row)}">
                                             更多
                                             <el-dropdown-menu slot="dropdown">
-                                                <el-dropdown-item>复制活动ID</el-dropdown-item>
-                                                <el-dropdown-item>视频库查看</el-dropdown-item>
-                                                <el-dropdown-item>我的卡券二维码</el-dropdown-item>
-                                                <el-dropdown-item>充值点数</el-dropdown-item>
-                                                <el-dropdown-item>复制活动</el-dropdown-item>
-                                                <el-dropdown-item>原AI配置</el-dropdown-item>
-                                                <el-dropdown-item>抖音小程序</el-dropdown-item>
-                                                <el-dropdown-item>微信小程序</el-dropdown-item>
-                                                <el-dropdown-item>活动定位和跳转</el-dropdown-item>
-                                                <el-dropdown-item>数据统计</el-dropdown-item>
-                                                <el-dropdown-item>删除</el-dropdown-item>
-                                                <el-dropdown-item>活动编辑</el-dropdown-item>
-                                                <el-dropdown-item>活动介绍</el-dropdown-item>
-                                                <el-dropdown-item>页面配置</el-dropdown-item>
-                                                <el-dropdown-item>接口权限</el-dropdown-item>
-                                                <el-dropdown-item>延时推送设置</el-dropdown-item>
-                                                <el-dropdown-item>卡券选择</el-dropdown-item>
-                                                <el-dropdown-item>我的卡券二维码</el-dropdown-item>
-                                                <el-dropdown-item>抽奖设置</el-dropdown-item>
-                                                <el-dropdown-item>中奖记录</el-dropdown-item>
+                                                <div class="flex flex-row flex-center">
+                                                    <div>
+                                                        <el-dropdown-item>数据统计</el-dropdown-item>
+                                                        <el-dropdown-item>删除</el-dropdown-item>
+                                                        <el-dropdown-item>活动编辑</el-dropdown-item>
+                                                        <el-dropdown-item>活动介绍</el-dropdown-item>
+                                                        <el-dropdown-item>页面配置</el-dropdown-item>
+                                                        <el-dropdown-item>接口权限</el-dropdown-item>
+                                                        <el-dropdown-item>延时推送设置</el-dropdown-item>
+                                                        <el-dropdown-item>卡券选择</el-dropdown-item>
+                                                        <el-dropdown-item>我的卡券二维码</el-dropdown-item>
+                                                        <el-dropdown-item>抽奖设置</el-dropdown-item>
+                                                    </div>
+                                                    <div>
+                                                        <el-dropdown-item>复制活动ID</el-dropdown-item>
+                                                        <el-dropdown-item>视频库查看</el-dropdown-item>
+                                                        <el-dropdown-item>我的卡券二维码</el-dropdown-item>
+                                                        <el-dropdown-item>充值点数</el-dropdown-item>
+                                                        <el-dropdown-item>复制活动</el-dropdown-item>
+                                                        <el-dropdown-item>原AI配置</el-dropdown-item>
+                                                        <el-dropdown-item>抖音小程序</el-dropdown-item>
+                                                        <el-dropdown-item>微信小程序</el-dropdown-item>
+                                                        <el-dropdown-item>活动定位和跳转</el-dropdown-item>
+                                                        <el-dropdown-item>中奖记录</el-dropdown-item>
+                                                    </div>
+                                                </div>
                                             </el-dropdown-menu>
                                         </el-dropdown>
                                     </div>
@@ -132,7 +138,8 @@
                             </el-table-column>
                             <el-table-column label="二维码">
                                 <template slot-scope="scope">
-                                    <i class="el-icon-link pointer" style="font-size: 20px" @click="qrcordDia = true"></i>
+                                    <i class="el-icon-link pointer" style="font-size: 20px"
+                                       @click="qrcordDia = true"></i>
                                 </template>
                             </el-table-column>
                         </el-table>
@@ -141,7 +148,7 @@
                 <page-info :is-collapse="isCollapse"/>
             </div>
         </div>
-        <el-dialog title="添加活动" :visible.sync="addActivityDia" width="500px"
+        <el-dialog title="添加活动" :visible.sync="addActivityDia" width="550px"
                    :before-close="handleClose">
             <el-form inline label-width="90px" label-position="right">
                 <el-form-item label="活动名称:">
@@ -160,19 +167,15 @@
                     <el-input size="small" v-model="form.time" style="width:300px"></el-input>
                 </el-form-item>
                 <el-form-item label="选择模式:">
-                    <el-select style="width: 300px" size="small" v-model="cardModel" placeholder="卡券模式"
-                               clearable>
-                        <el-option
-                                v-for="item in options"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
-                        </el-option>
-                    </el-select>
+                    <el-radio-group v-model="form.timeModel" style="width:360px">
+                        <el-radio :label="1">大转盘模式</el-radio>
+                        <el-radio :label="2">卡券模式</el-radio>
+                        <el-radio :label="3">一键发布模式</el-radio>
+                    </el-radio-group>
                 </el-form-item>
             </el-form>
             <div class="button-wrap">
-                <el-button size="small" type="primary" @click="handleClose">确认添加</el-button>
+                <el-button type="primary" @click="handleClose">确认添加</el-button>
             </div>
         </el-dialog>
         <el-dialog title="二维码弹窗" :visible.sync="qrcordDia" width="500px"
@@ -210,7 +213,7 @@
             tableData: [{
                 date: '2016-05-02',
                 name: '王小虎',
-                phone: '13111112222',
+                phone: '1311111',
                 count: 11,
                 status: true,
                 aiCount: 1000,

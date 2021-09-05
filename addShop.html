@@ -21,9 +21,9 @@
             <div class="main-content">
                 <div class="table-wrap">
                     <div class="table-top flex-row flex-center flex-start">
-                        <el-button size="small" type="primary" :disabled="step===2" @click="addTypeDia=true">+ 添加分类
+                        <el-button type="primary" :disabled="step===2" @click="addTypeDia=true">+ 添加分类
                         </el-button>
-                        <el-button size="small" type="primary" :disabled="step===1">+ 添加商户</el-button>
+                        <el-button type="primary" :disabled="step===1">+ 添加商户</el-button>
                     </div>
                     <div class="table-content">
                         <el-table :data="tableData" v-if="step===1">
@@ -35,12 +35,12 @@
                             </el-table-column>
                             <el-table-column label="操作" width="200">
                                 <template slot-scope="scope">
-                                    <el-button type="primary" size="small">编辑</el-button>
-                                    <el-button type="danger" size="small">删除</el-button>
+                                    <el-button type="primary">编辑</el-button>
+                                    <el-button type="danger">删除</el-button>
                                 </template>
                             </el-table-column>
                         </el-table>
-                        <el-form class="add-shop-form" inline label-width="100px" label-position="right" v-else>
+                        <el-form class="open-plat-wrap" inline label-width="120px" label-position="right" v-else>
                             <el-form-item label="商户名称:">
                                 <el-input size="small" v-model="form.key" style="width:300px"></el-input>
                             </el-form-item>
@@ -103,11 +103,11 @@
                         </el-form>
                     </div>
                 </div>
-                <div class="button-wrap max-width-900">
+                <div class="button-wrap text-right">
                     <el-button type="primary" v-if="step===1" size="small">
                         <el-link href="myShop.html" :underline="false">返回我的商户</el-link>
                     </el-button>
-                    <el-button type="primary" v-if="step===1" size="small" @click="step=2">下一步添加商户</el-button>
+                    <el-button type="primary" v-if="step===1" size="small" @click="step=2">添加商户</el-button>
                     <el-button type="primary" v-else size="small" @click="step=2">下一步</el-button>
                 </div>
                 <page-info :is-collapse="isCollapse"/>

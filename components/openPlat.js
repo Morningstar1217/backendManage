@@ -11,7 +11,7 @@ Vue.component('open-plat', {
         },
     },
     template: `
-      <div class="form-wrap">
+      <div class="form-wrap" style="width: 450px">
       <div class="open-plat-title font-weight">{{ formTitle }}</div>
       <el-form inline label-width="90px" label-position="right">
         <el-form-item label="APP_key:">

@@ -23,23 +23,23 @@
                     <div class="table-top flex-row flex-center flex-start flex-s-b">
                         <div class="left flex-row flex-center flex-start flex-no-wrap">
                             <div class="flex-row flex-center flex-start flex-no-wrap">
-                                <el-input style="width: 120px;margin-right: 10px;" size="small" v-model="userName"
+                                <el-input style="width: 120px;margin-right: 10px;" v-model="userName"
                                           placeholder="昵称筛选"></el-input>
-                                <el-input style="width: 120px;margin-right: 10px;" size="small" v-model="userNo"
+                                <el-input style="width: 120px;margin-right: 10px;" v-model="userNo"
                                           placeholder="活动编号"></el-input>
-                                <el-input style="width: 120px;margin-right: 10px;" size="small" v-model="userAddress"
+                                <el-input style="width: 120px;margin-right: 10px;" v-model="userAddress"
                                           placeholder="所属地区"></el-input>
-                                <el-input style="width: 120px;margin-right: 10px;" size="small" v-model="userPhone"
+                                <el-input style="width: 120px;margin-right: 10px;" v-model="userPhone"
                                           placeholder="手机号"></el-input>
                             </div>
-                            <el-button size="small" type="warning">搜索</el-button>
-                            <el-button size="small" type="warning">刷新</el-button>
+                            <el-button class="change-button">搜索</el-button>
+                            <el-button class="change-button">刷新</el-button>
                         </div>
                         <div class="right flex-row flex-center flex-start">
-                            <el-button size="small" type="primary">
+                            <el-button type="primary">
                                 <el-link :underline="false" href="">+ 添加分类</el-link>
                             </el-button>
-                            <el-button size="small" type="primary">
+                            <el-button type="primary">
                                 <el-link :underline="false" href="">+ 添加商户</el-link>
                             </el-button>
                             <i class="el-icon-s-grid pointer grid" @click="permissonDia=true"></i>

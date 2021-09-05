@@ -35,16 +35,16 @@
                                 <el-input style="width: 120px;margin: 0 10px" size="small" v-model="shopName"
                                           placeholder="商户名称"/>
                             </div>
-                            <el-button size="small" type="warning">刷新</el-button>
-                            <el-button size="small" type="warning">按默认排序</el-button>
-                            <el-button size="small" type="warning">按点数使用排序</el-button>
-                            <el-button size="small" type="warning">按AI使用次数排序</el-button>
+                            <el-button>刷新</el-button>
+                            <el-button>按默认排序</el-button>
+                            <el-button>按点数使用排序</el-button>
+                            <el-button>按AI使用次数排序</el-button>
                         </div>
                         <div class="right flex-row flex-center flex-start">
-                            <el-button size="small" type="primary">
+                            <el-button type="primary">
                                 <el-link :underline="false" href="addShop.html">+ 添加分类</el-link>
                             </el-button>
-                            <el-button size="small" type="primary">
+                            <el-button type="primary">
                                 <el-link :underline="false" href="addShop.html">+ 添加商户</el-link>
                             </el-button>
                             <i class="el-icon-s-grid pointer grid" @click="permissonDia=true"></i>
@@ -73,7 +73,7 @@
                                 <template slot-scope="scope">
                                     <div class="flex-row flex-center flex-start flex-no-wrap">
                                         <el-button type="primary" size="mini" style="margin-right: 10px;">
-                                            <el-link :underline="false" href="dataBlank.html">综合数据</el-link>
+                                            <el-link :underline="false" href="dataBlank.html" style="font-size: 12px">综合数据</el-link>
                                         </el-button>
                                         <el-dropdown split-button type="primary" size="mini" :hide-on-click="false"
                                                      style="margin-right: 10px;">
@@ -81,47 +81,47 @@
                                             <el-dropdown-menu slot="dropdown">
                                                 <el-dropdown-item class="flex-row flex-s-b flex-center"
                                                                   style="height: 30px">
-                                                    AI权限:
+                                                    AI权限
                                                     <el-switch v-model="scope.row.ai" size="mini"></el-switch>
                                                 </el-dropdown-item>
                                                 <el-dropdown-item class="flex-row flex-s-b flex-center"
                                                                   style="height: 30px">
-                                                    商家设置活动:
+                                                    商家设置活动
                                                     <el-switch v-model="scope.row.shop" size="mini"></el-switch>
                                                 </el-dropdown-item>
                                                 <el-dropdown-item class="flex-row flex-s-b flex-center"
                                                                   style="height: 30px">
-                                                    活动是否审核:
+                                                    活动是否审核
                                                     <el-switch v-model="scope.row.activity" size="mini"></el-switch>
                                                 </el-dropdown-item>
                                                 <el-dropdown-item class="flex-row flex-s-b flex-center"
                                                                   style="height: 30px">
-                                                    卡券权限:
+                                                    卡券权限
                                                     <el-switch v-model="scope.row.card" size="mini"></el-switch>
                                                 </el-dropdown-item>
                                                 <el-dropdown-item class="flex-row flex-s-b flex-center"
                                                                   style="height: 30px">
-                                                    抽奖权限:
+                                                    抽奖权限
                                                     <el-switch v-model="scope.row.gift" size="mini"></el-switch>
                                                 </el-dropdown-item>
                                                 <el-dropdown-item class="flex-row flex-s-b flex-center"
                                                                   style="height: 30px">
-                                                    禁用此商家:
+                                                    禁用此商家
                                                     <el-switch v-model="scope.row.disableShop" size="mini"></el-switch>
                                                 </el-dropdown-item>
                                                 <el-dropdown-item class="flex-row flex-s-b flex-center"
                                                                   style="height: 30px">
-                                                    快手活动:
+                                                    快手活动
                                                     <el-switch v-model="scope.row.kuaishou" size="mini"></el-switch>
                                                 </el-dropdown-item>
                                                 <el-dropdown-item class="flex-row flex-s-b flex-center"
                                                                   style="height: 30px">
-                                                    抖音活动:
+                                                    抖音活动
                                                     <el-switch v-model="scope.row.douyin" size="mini"></el-switch>
                                                 </el-dropdown-item>
                                                 <el-dropdown-item class="flex-row flex-s-b flex-center"
                                                                   style="height: 30px">
-                                                    视频号活动:
+                                                    视频号活动
                                                     <el-switch v-model="scope.row.shipinhao" size="mini"></el-switch>
                                                 </el-dropdown-item>
                                             </el-dropdown-menu>
@@ -166,8 +166,8 @@
                 <el-checkbox label="备注"></el-checkbox>
             </el-checkbox-group>
             <div class="button-wrap">
-                <el-button size="small" @click="permissonDia = false">取 消</el-button>
-                <el-button size="small" type="primary" @click="permissonDia = false">确 定</el-button>
+                <el-button @click="permissonDia = false">取 消</el-button>
+                <el-button type="primary" @click="permissonDia = false">确 定</el-button>
             </div>
         </el-dialog>
         <el-dialog title="充值点数" class="permisson-dia" :visible.sync="countDia" width="30%"
@@ -179,8 +179,8 @@
             </div>
             <div class="list-title">单次充值为10的整数倍</div>
             <div class="button-wrap">
-                <el-button size="small" @click="countDia = false">取 消</el-button>
-                <el-button size="small" type="primary" @click="countDia = false">充值点数</el-button>
+                <el-button @click="countDia = false">取 消</el-button>
+                <el-button type="primary" @click="countDia = false">充值点数</el-button>
             </div>
         </el-dialog>
         <el-dialog title="充值AI点数" class="permisson-dia" :visible.sync="AiDia" width="30%"
@@ -192,8 +192,8 @@
             </div>
             <div class="list-title">单次充值为100的整数倍</div>
             <div class="button-wrap">
-                <el-button size="small" @click="AiDia = false">取 消</el-button>
-                <el-button size="small" type="primary" @click="AiDia = false">充值点数</el-button>
+                <el-button @click="AiDia = false">取 消</el-button>
+                <el-button type="primary" @click="AiDia = false">充值点数</el-button>
             </div>
         </el-dialog>
         <el-dialog title="商家抖音/快手/视频号" class="permisson-dia" :visible.sync="platTypeDia"
@@ -227,8 +227,8 @@
                 </el-form-item>
             </el-form>
             <div class="button-wrap">
-                <el-button size="small" @click="platTypeDia = false">下一项</el-button>
-                <el-button size="small" type="primary" @click="platTypeDia = false">保存</el-button>
+                <el-button @click="platTypeDia = false">下一项</el-button>
+                <el-button type="primary" @click="platTypeDia = false">保存</el-button>
             </div>
         </el-dialog>
     </div>

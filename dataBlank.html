@@ -19,24 +19,24 @@
                 <top-menu :is-collapse="isCollapse" :default-avatar="defaultAvatar" @change-collapse="changeCollapse"/>
             </div>
             <div class="main-content">
-                <div class="table-wrap">
+                <div class="table-wrap data-blank">
                     <div class="table-top flex-row flex-center flex-start">
-                        <el-radio-group v-model="platType" size="small" style="margin-right: 20px;">
+                        <el-radio-group v-model="platType" style="margin-right: 20px;">
                             <el-radio-button label="抖音"></el-radio-button>
                             <el-radio-button label="快手"></el-radio-button>
                             <el-radio-button label="视频号"></el-radio-button>
                         </el-radio-group>
-                        <el-button size="small" type="text">今天</el-button>
-                        <el-button size="small" type="text">本周</el-button>
-                        <el-button size="small" type="text">本月</el-button>
-                        <el-button size="small" type="text">所有</el-button>
-                        <el-button size="small" type="text">按周期显示</el-button>
-                        <el-select v-model="shopName" style="width: 120px;margin: 0 20px" size="small" placeholder="商户名"
+                        <el-button type="text">今天</el-button>
+                        <el-button type="text">本周</el-button>
+                        <el-button type="text">本月</el-button>
+                        <el-button type="text">所有</el-button>
+                        <el-button type="text">按周期显示</el-button>
+                        <el-select v-model="shopName" style="width: 120px;margin: 0 20px" placeholder="商户名"
                                    clearable>
                         </el-select>
-                        <el-button size="small" type="primary">搜索</el-button>
-                        <el-button size="small" type="primary">恢复默认顺序</el-button>
-                        <el-button size="small" type="primary">刷新</el-button>
+                        <el-button class="change-button" type="primary">搜索</el-button>
+                        <el-button class="change-button" type="primary">恢复默认顺序</el-button>
+                        <el-button class="change-button" type="primary">刷新</el-button>
                     </div>
                     <div class="data-blank-title font-weight">数据走势图</div>
                     <div class="data-block-wrap flex-row flex-center flex-start flex-s-b">
@@ -186,6 +186,10 @@
                     ],
                     title: {
                         text: '核销数',
+                        textStyle: {
+                            fontSize: 24,
+                            color: '#000',
+                        },
                     },
                 }
 
@@ -201,12 +205,17 @@
                 option = {
                     title: {
                         text: '点赞播放数',
+                        textStyle: {
+                            fontSize: 24,
+                            color: '#000',
+                        },
                     },
                     tooltip: {
                         trigger: 'axis',
                     },
                     legend: {
                         data: ['播放数', '点赞数'],
+                        top: '2%',
                     },
                     grid: {
                         left: '1%',

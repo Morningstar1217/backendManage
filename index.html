@@ -19,16 +19,16 @@
                 <top-menu :is-collapse="isCollapse" :default-avatar="defaultAvatar" @change-collapse="changeCollapse"/>
             </div>
             <div class="main-content">
-                <div class="open-plat-wrap flex-row flex-center flex-top flex-wrap">
-                    <div style="margin-right: 20px;">
+                <div class="open-plat-wrap flex-row flex-center flex-top flex-wrap flex-s-a">
+                    <div>
                         <open-plat form-title="抖音开放平台" ref="plat1"/>
                     </div>
                     <div>
                         <open-plat form-title="快手开放平台" ref="plat2"/>
                     </div>
                 </div>
-                <div class="button-wrap">
-                    <el-button size="small" type="primary" @click="nextStep">下一步</el-button>
+                <div class="button-wrap text-right">
+                    <el-button type="primary" @click="nextStep">下一步</el-button>
                 </div>
                 <page-info :is-collapse="isCollapse"/>
             </div>

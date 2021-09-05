@@ -23,7 +23,7 @@
                     <div class="table-top flex-row flex-center flex-start flex-s-b">
                         <div class="left flex-row flex-center flex-start flex-no-wrap">
                             <div class="flex-row flex-center flex-start flex-no-wrap">
-                                <el-select style="width: 120px" size="small" v-model="shopType" placeholder="所属类别"
+                                <el-select style="width: 120px" v-model="shopType" placeholder="所属类别"
                                            clearable>
                                     <el-option
                                             v-for="item in options"
@@ -32,19 +32,19 @@
                                             :value="item.value">
                                     </el-option>
                                 </el-select>
-                                <el-input style="width: 120px;margin: 0 10px" size="small" v-model="shopName"
+                                <el-input style="width: 120px;margin: 0 10px" v-model="shopName"
                                           placeholder="商户名称"/>
                             </div>
-                            <el-button size="small" type="warning">刷新</el-button>
-                            <el-button size="small" type="warning">按默认排序</el-button>
-                            <el-button size="small" type="warning">按点数使用排序</el-button>
-                            <el-button size="small" type="warning">按AI使用次数排序</el-button>
+                            <el-button>刷新</el-button>
+                            <el-button>按默认排序</el-button>
+                            <el-button>按点数使用排序</el-button>
+                            <el-button>按AI使用次数排序</el-button>
                         </div>
                         <div class="right flex-row flex-center flex-start">
-                            <el-button size="small" type="primary">
+                            <el-button type="primary">
                                 <el-link :underline="false" href="addShop.html">+ 添加分类</el-link>
                             </el-button>
-                            <el-button size="small" type="primary">
+                            <el-button type="primary">
                                 <el-link :underline="false" href="addShop.html">+ 添加商户</el-link>
                             </el-button>
                             <i class="el-icon-s-grid pointer grid" @click="permissonDia=true"></i>
@@ -73,7 +73,9 @@
                                 <template slot-scope="scope">
                                     <div class="flex-row flex-center flex-start flex-no-wrap">
                                         <el-button type="primary" size="mini" style="margin-right: 10px;">
-                                            <el-link :underline="false" href="dataBlank.html">综合数据</el-link>
+                                            <el-link style="font-size: 12px" :underline="false" href="dataBlank.html">
+                                                综合数据
+                                            </el-link>
                                         </el-button>
                                         <el-dropdown split-button type="primary" size="mini" :hide-on-click="false"
                                                      style="margin-right: 10px;">
