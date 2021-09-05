@@ -73,11 +73,11 @@
                                 <template slot-scope="scope">
                                     <div class="flex-row flex-center flex-start flex-no-wrap">
                                         <el-button type="primary" size="mini" style="margin-right: 10px;">
-                                            <el-link style="font-size: 12px" :underline="false" href="dataBlank.html">
+                                            <el-link style="font-size: 14px" :underline="false" href="dataBlank.html">
                                                 综合数据
                                             </el-link>
                                         </el-button>
-                                        <el-dropdown split-button type="primary" size="small" :hide-on-click="false"
+                                        <el-dropdown type="primary" size="small" :hide-on-click="false"
                                                      style="margin-right: 10px;">
                                             <el-button type="primary" size="small">
                                                 权限设置<i class="el-icon-arrow-down el-icon--right"></i>
@@ -115,7 +115,7 @@
                                                 </el-dropdown-item>
                                             </el-dropdown-menu>
                                         </el-dropdown>
-                                        <el-dropdown split-button type="primary" size="small"
+                                        <el-dropdown type="primary" size="small"
                                                      @command="(command)=>{clickMenu(command,scope.row)}">
                                             <el-button type="primary" size="small">
                                                 更多设置<i class="el-icon-arrow-down el-icon--right"></i>
