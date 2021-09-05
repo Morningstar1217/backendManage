@@ -123,6 +123,7 @@
 
 .el-menu .el-menu-item a {
     color: #fff !important;
+    width: 100%;
 }
 
 .container .content {
@@ -484,18 +485,13 @@
     font-size: 15px !important;
 }
 
-.el-dropdown-menu--mini .el-dropdown-menu__item {
+.el-dropdown-menu--small .el-dropdown-menu__item {
     font-size: 14px !important;
     margin-bottom: 10px;
     width: 160px;
 }
 
-.el-dropdown-menu--small .el-dropdown-menu__item {
-    font-size: 14px !important;
-    margin-bottom: 10px;
-}
-
-.el-dropdown-menu--mini .el-dropdown-menu__item a {
+.el-dropdown-menu--small .el-dropdown-menu__item a {
     font-size: 14px !important;
 }
 
@@ -508,4 +504,9 @@
 
 .el-table__row {
     font-size: 15px !important;
+}
+
+.el-button--mini, .el-button--small {
+    height: 34px!important;
+    font-size: 14px !important;
 }

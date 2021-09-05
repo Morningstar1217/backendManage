@@ -72,9 +72,11 @@
                             <el-table-column label="操作">
                                 <template slot-scope="scope">
                                     <div class="flex-row flex-center flex-start flex-no-wrap">
-                                        <el-dropdown split-button type="primary" size="mini"
+                                        <el-dropdown type="primary" size="small"
                                                      @command="(command)=>{clickMenu(command,scope.row)}">
-                                            更多
+                                            <el-button type="primary" size="small">
+                                                更多<i class="el-icon-arrow-down el-icon--right"></i>
+                                            </el-button>
                                             <el-dropdown-menu slot="dropdown">
                                                 <el-dropdown-item>商户详情</el-dropdown-item>
                                                 <el-dropdown-item>

@@ -69,15 +69,19 @@
                                     <el-switch v-model="scope.row.status"/>
                                 </template>
                             </el-table-column>
-                            <el-table-column label="操作" width="350px">
+                            <el-table-column label="操作" width="380px">
                                 <template slot-scope="scope">
                                     <div class="flex-row flex-center flex-start flex-no-wrap">
-                                        <el-button type="primary" size="mini" style="margin-right: 10px;">
-                                            <el-link :underline="false" href="dataBlank.html" style="font-size: 12px">综合数据</el-link>
+                                        <el-button type="primary" size="small" style="margin-right: 10px;">
+                                            <el-link :underline="false" href="dataBlank.html" style="font-size: 14px">
+                                                综合数据
+                                            </el-link>
                                         </el-button>
-                                        <el-dropdown split-button type="primary" size="mini" :hide-on-click="false"
+                                        <el-dropdown type="primary" size="small" :hide-on-click="false"
                                                      style="margin-right: 10px;">
-                                            权限设置
+                                            <el-button type="primary" size="small">
+                                                更多菜单<i class="el-icon-arrow-down el-icon--right"></i>
+                                            </el-button>
                                             <el-dropdown-menu slot="dropdown">
                                                 <el-dropdown-item class="flex-row flex-s-b flex-center"
                                                                   style="height: 30px">
@@ -126,9 +130,11 @@
                                                 </el-dropdown-item>
                                             </el-dropdown-menu>
                                         </el-dropdown>
-                                        <el-dropdown split-button type="primary" size="mini"
+                                        <el-dropdown type="primary" size="small"
                                                      @command="(command)=>{clickMenu(command,scope.row)}">
-                                            更多设置
+                                            <el-button type="primary" size="small">
+                                                更多设置<i class="el-icon-arrow-down el-icon--right"></i>
+                                            </el-button>
                                             <el-dropdown-menu slot="dropdown">
                                                 <el-dropdown-item>商家大数据</el-dropdown-item>
                                                 <el-dropdown-item>编辑资料</el-dropdown-item>
