@@ -118,7 +118,10 @@
                                                         <el-dropdown-item>延时推送设置</el-dropdown-item>
                                                         <el-dropdown-item>卡券选择</el-dropdown-item>
                                                         <el-dropdown-item>我的卡券二维码</el-dropdown-item>
-                                                        <el-dropdown-item>抽奖设置</el-dropdown-item>
+                                                        <el-dropdown-item>
+                                                            <el-link :underline="false" href="giftManage.html">抽奖设置
+                                                            </el-link>
+                                                        </el-dropdown-item>
                                                     </div>
                                                     <div>
                                                         <el-dropdown-item>复制活动ID</el-dropdown-item>
@@ -126,10 +129,10 @@
                                                         <el-dropdown-item>我的卡券二维码</el-dropdown-item>
                                                         <el-dropdown-item>充值点数</el-dropdown-item>
                                                         <el-dropdown-item>复制活动</el-dropdown-item>
-                                                        <el-dropdown-item>原AI配置</el-dropdown-item>
-                                                        <el-dropdown-item>抖音小程序</el-dropdown-item>
-                                                        <el-dropdown-item>微信小程序</el-dropdown-item>
-                                                        <el-dropdown-item>活动定位和跳转</el-dropdown-item>
+                                                        <el-dropdown-item command="aliDia">原AI配置</el-dropdown-item>
+                                                        <el-dropdown-item command="douyinDia">抖音小程序</el-dropdown-item>
+                                                        <el-dropdown-item command="openMiniDia">微信小程序</el-dropdown-item>
+                                                        <el-dropdown-item command="homeDia">活动定位和跳转</el-dropdown-item>
                                                         <el-dropdown-item>中奖记录</el-dropdown-item>
                                                     </div>
                                                 </div>
@@ -187,6 +190,110 @@
                 <el-button size="small" type="primary" @click="handleCloseQr">关闭弹窗</el-button>
             </div>
         </el-dialog>
+        <el-dialog title="小程序配置" :visible.sync="miniProDia" width="500px"
+                   :before-close="handleCloseMini">
+            <el-form inline label-width="120px" label-position="right">
+                <el-form-item label="小程序AppId:">
+                    <el-input size="small" v-model="form2.key" style="width:300px"
+                              placeholder="！重要,宁可不填不要乱填，乱填视频不发 填入微信小程序APP_ID"></el-input>
+                </el-form-item>
+                <el-form-item label="小程序Secret:">
+                    <el-input size="small" v-model="form2.secret" style="width:300px"
+                              placeholder="！重要,宁可不填不要乱填，乱填视频不发 填入微信小程序secret"></el-input>
+                </el-form-item>
+                <el-form-item label="小程序Pages:">
+                    <el-input size="small" v-model="form2.url" style="width:300px"></el-input>
+                </el-form-item>
+                <el-form-item label="小程序Query:">
+                    <el-input size="small" v-model="form2.time" style="width:300px"></el-input>
+                </el-form-item>
+            </el-form>
+            <div class="sub-title">
+                通过scheme码进入小程序时的query，最大128个字符，只支持数字，大小写英文以及部分特殊字符：!#$&'()*+,/:;=?@-._~
+            </div>
+            <div class="sub-title">
+                提示码：40002-暂无生成权限，40013-生成权限被封禁，85079-小程序未发布
+                <el-button type="primary" size="small f-r">更多说明</el-button>
+            </div>
+            <div class="button-wrap" style="margin-top: 20px;">
+                <el-button type="primary" @click="handleCloseMini">确认添加</el-button>
+            </div>
+        </el-dialog>
+        <el-dialog title="小程序配置" :visible.sync="douyinDia" width="500px"
+                   :before-close="handleCloseDouyin">
+            <el-form inline label-width="120px" label-position="right">
+                <el-form-item label="小程序AppId:">
+                    <el-input size="small" v-model="form2.key" style="width:300px"
+                              placeholder="！重要,宁可不填不要乱填，乱填视频不发 填入抖音小程序APP_ID"></el-input>
+                </el-form-item>
+                <el-form-item label="小程序标题:">
+                    <el-input size="small" v-model="form2.secret" style="width:300px"
+                              placeholder="！重要,宁可不填不要乱填，乱填视频不发 填入抖音小程序secret"></el-input>
+                </el-form-item>
+                <el-form-item label="小程序Pages:">
+                    <el-input size="small" v-model="form2.url" style="width:300px"></el-input>
+                </el-form-item>
+            </el-form>
+            <div class="sub-title">
+                小程序挂载视频开通条件及注意事项：<br/>
+                1、评级达到A级及以上，信用分不低于90分<br/>
+                2、挂载小程序时不能挂载商家位置<br/>
+                3、小程序内不包含诱导分享，收集线索，引导致电等能力<br/>
+                4、若开通后，发现开发者在使用过程中，滥用此能力对用户或平台造成负面影响，平台将有权利随时对该功能进行收回，并视情况对违规的小程序进行处罚<br/>
+                5、小程序绑定视频需要开通权限，未开通权限前请勿配置参数，如需帮助请联系客服。
+            </div>
+            <div class="button-wrap" style="margin-top: 20px;">
+                <el-button type="primary" @click="handleCloseDouyin">确认添加</el-button>
+            </div>
+        </el-dialog>
+        <el-dialog title="活动定位及跳转" :visible.sync="homeDia" width="500px"
+                   :before-close="handleCloseHomeDia">
+            <div class="flex flex-center flex-start" style="margin-top: 20px;">
+                <el-checkbox v-model="home">
+                    商家主页
+                    <el-input size="small" :disabled="!home" style="margin-left: 10px;"></el-input>
+                </el-checkbox>
+            </div>
+            <div class="flex flex-center flex-start" style="margin-top: 20px;">
+                <el-checkbox v-model="address">
+                    门店地址
+                    <el-input size="small" :disabled="!address" style="margin-left: 10px;"></el-input>
+                </el-checkbox>
+            </div>
+            <div class="flex flex-center flex-start" style="margin-top: 20px;">
+                <el-checkbox v-model="changeUrl">
+                    自定义跳转
+                    <el-input size="small" :disabled="!changeUrl" style="margin-left: 10px;"></el-input>
+                </el-checkbox>
+            </div>
+            <div class="button-wrap" style="margin-top: 20px;">
+                <el-button type="primary" @click="handleCloseHomeDia">确认添加</el-button>
+            </div>
+        </el-dialog>
+        <el-dialog title="配置腾讯阿里AI" :visible.sync="aliDia" width="500px"
+                   :before-close="handleCloseAliDia">
+            <el-form inline label-width="90px" label-position="right">
+                <el-form-item label="标题后缀:">
+                    <el-input size="small" v-model="form4.key" style="width:300px"></el-input>
+                </el-form-item>
+                <el-form-item label="素材原声:">
+                    <el-input size="small" v-model="form4.secret" style="width:300px"></el-input>
+                </el-form-item>
+                <el-form-item label="生成规则:">
+                    <el-input size="small" v-model="form4.url" style="width:150px"></el-input>
+                    <el-input size="small" v-model="form4.url2" style="width:150px"></el-input>
+                </el-form-item>
+                <el-form-item label="生成数量:">
+                    <el-input size="small" v-model="form4.time" style="width:300px"></el-input>
+                </el-form-item>
+                <el-form-item label="生成模式:">
+                    <el-input size="small" v-model="form4.time" style="width:300px"></el-input>
+                </el-form-item>
+            </el-form>
+            <div class="button-wrap" style="margin-top: 20px;">
+                <el-button type="primary" @click="handleCloseAliDia">确认添加</el-button>
+            </div>
+        </el-dialog>
     </div>
 </div>
 </body>
@@ -228,9 +335,19 @@
             }],
             addActivityDia: false,
             form: {},
+            form2: {},
+            form3: {},
+            form4: {},
             acType: '',
             cardModel: '',
             qrcordDia: false,
+            miniProDia: false,
+            douyinDia: false,
+            aliDia: false,
+            homeDia: false,
+            home: '',
+            address: '',
+            changeUrl: '',
         }),
         created() {
             this.isCollapse = document.body.clientWidth <= 1200
@@ -254,6 +371,18 @@
                     case 'platType':
                         this.platTypeDia = true
                         break
+                    case 'openMiniDia':
+                        this.miniProDia = true
+                        break
+                    case 'douyinDia':
+                        this.douyinDia = true
+                        break
+                    case 'homeDia':
+                        this.homeDia = true
+                        break
+                    case 'aliDia':
+                        this.aliDia = true
+                        break
                 }
             },
             handleClose() {
@@ -265,6 +394,18 @@
             openDia(index) {
                 this.acType = index
                 this.addActivityDia = true
+            },
+            handleCloseMini() {
+                this.miniProDia = false
+            },
+            handleCloseDouyin() {
+                this.douyinDia = false
+            },
+            handleCloseHomeDia() {
+                this.homeDia = false
+            },
+            handleCloseAliDia() {
+                this.aliDia = false
             },
         },
     })
