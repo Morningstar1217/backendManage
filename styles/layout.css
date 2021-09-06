@@ -272,6 +272,27 @@
     padding: 20px 0;
 }
 
+.main-content .table-content .video-list .video-type-title {
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #999;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 20px;
+}
+
+.main-content .table-content .video-list .video-choose-list div {
+    width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.main-content .table-content .video-list .video-upload {
+    display: block !important;
+    margin: 20px auto 0;
+}
+
 .table-wrap .table-top .left .el-button {
     background-color: #8c7cf8 !important;
     color: #fff !important;
@@ -331,7 +352,8 @@
 }
 
 .avatar-uploader .el-upload,
-.gift-uploader .el-upload {
+.gift-uploader .el-upload,
+.video-uploader .el-upload {
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
     cursor: pointer;
@@ -340,12 +362,23 @@
     margin-left: 120px;
 }
 
-.gift-uploader .el-upload {
+.gift-uploader .el-upload,
+.video-uploader .el-upload {
     margin-left: 0;
 }
 
+.video-uploader .el-upload {
+    width: 100%;
+    height: 300px;
+}
+
+.video-uploader .avatar-uploader-icon {
+    line-height: 300px !important;
+}
+
 .avatar-uploader .el-upload:hover,
-.gift-uploader .el-upload:hover {
+.gift-uploader .el-upload:hover,
+.video-uploader .el-upload:hover {
     border-color: #409EFF;
 }
 
@@ -553,4 +586,19 @@
 .el-button--mini, .el-button--small {
     height: 34px !important;
     font-size: 14px !important;
+}
+
+.upload-wrap {
+    box-sizing: border-box;
+    width: 1000px;
+    padding: 20px;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+    margin-top: 20px!important;
+}
+
+.upload-wrap .upload-btn {
+    width: 120px;
+    display: block;
+    margin: 20px auto 0;
 }

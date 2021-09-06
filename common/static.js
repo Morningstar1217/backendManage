@@ -89,5 +89,17 @@ const defaultMenu = [
         ],
         icon: 'el-icon-user',
     },
+    {
+        title: '卡券管理',
+        index: '6',
+        children: [
+            {
+                title: '卡券列表',
+                index: '1',
+                path: 'cardManage.html',
+            },
+        ],
+        icon: 'el-icon-bank-card',
+    },
 ]
 const defaultAvatar = '../images/avatar.jpg'

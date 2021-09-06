@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <link rel="stylesheet" href="">
+    <meta charset="UTF-8">
+    <title>卡券管理</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="./styles/layout.css">
+    <link rel="stylesheet" href="./element-ui/index.css">
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="container flex-row">
+        <div>
+            <left-menu active-menu="6-1" :default-menu="defaultMenu" :is-collapse="isCollapse"/>
+        </div>
+        <div class="content" :class="{closeMenu:isCollapse}">
+            <div>
+                <top-menu :is-collapse="isCollapse" :default-avatar="defaultAvatar" @change-collapse="changeCollapse"/>
+            </div>
+            <div class="main-content">
+                <div class="table-wrap">
+                    <div class="table-top flex-row flex-center flex-start flex-s-b">
+                        <div class="left flex-row flex-center flex-start flex-no-wrap">
+                            <div class="flex-row flex-center flex-start flex-no-wrap">
+                                <el-select style="width: 120px;margin-right: 10px;" v-model="shopType" placeholder="正常"
+                                           clearable>
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                                <el-input style="width: 120px;margin-right: 10px;" v-model="userPhone"
+                                          placeholder="选择商家"></el-input>
+                                <el-select style="width: 120px;margin-right: 10px;" v-model="shopType"
+                                           placeholder="卡券类型"
+                                           clearable>
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                                <el-input style="width: 120px;margin-right: 10px;" v-model="userPhone"
+                                          placeholder="按卡券名称筛选"></el-input>
+                            </div>
+                            <el-button class="change-button">搜索</el-button>
+                        </div>
+                        <div class="right flex-row flex-center flex-start">
+                            <el-button type="primary" @click="addGiftDia = true">
+                                + 添加卡券
+                            </el-button>
+                            <i class="el-icon-s-grid pointer grid" @click="permissonDia=true"></i>
+                        </div>
+                    </div>
+                    <div class="table-content">
+                        <el-table :data="tableData" ref="multipleTable" @selection-change="handleSelectionChange">
+                            <el-table-column type="index" label="卡券编号" width="100">
+                            </el-table-column>
+                            <el-table-column prop="name" label="商家名称">
+                            </el-table-column>
+                            <el-table-column prop="phone" label="卡券名称">
+                            </el-table-column>
+                            <el-table-column prop="count" label="内容预览">
+                            </el-table-column>
+                            <el-table-column prop="aiCount" label="总量/剩余">
+                            </el-table-column>
+                            <el-table-column prop="phone" label="已发放/已核销">
+                            </el-table-column>
+                            <el-table-column prop="phone" label="有限期"></el-table-column>
+                            <el-table-column prop="phone" label="创建时间"></el-table-column>
+                            <el-table-column label="状态">
+                                <template slot-scope="scope">
+                                    <el-switch v-model="scope.row.status"/>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="操作" width="280">
+                                <template slot-scope="scope">
+                                    <el-button type="primary" size="mini">编辑</el-button>
+                                    <el-button type="primary" size="mini">领取记录</el-button>
+                                    <el-button type="danger" size="mini">删除</el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </div>
+                </div>
+                <page-info :is-collapse="isCollapse"/>
+            </div>
+            <el-dialog title="添加卡券" :visible="addGiftDia"
+                       :before-close="handleClose">
+                <el-form inline label-width="100px" label-position="right">
+                    <el-form-item label="卡券名称:">
+                        <el-input size="small" v-model="form.key" style="width:240px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="使用门槛:">
+                        <el-input size="small" v-model="form.secret" style="width:240px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="卡券标题:">
+                        <el-input size="small" v-model="form.key" style="width:240px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="显示排序:">
+                        <el-input size="small" v-model="form.secret" style="width:240px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="所属商家:">
+                        <el-input size="small" v-model="form.secret" style="width:240px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="卡券数量:">
+                        <el-input size="small" v-model="form.secret" style="width:240px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="卡券类型:">
+                        <el-select size="small" style="width: 240px;" v-model="form.card" placeholder="正常"
+                                   clearable>
+                            <el-option
+                                    v-for="item in options"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="单人限领:">
+                        <el-input size="small" v-model="form.secret" style="width:240px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="卡券内容:">
+                        <el-input size="small" v-model="form.secret" style="width:240px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="领取有效期:">
+                        <el-date-picker
+                                style="width:240px"
+                                size="small"
+                                v-model="form.time1"
+                                type="datetimerange"
+                                range-separator="至"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="使用规则:">
+                        <el-input size="small" v-model="form.secret" style="width:240px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="卡券有效期:">
+                        <el-radio-group v-model="form.timeModel" style="width:300px">
+                            <el-radio :label="1" style="margin:0 20px 20px 0;">
+                                固定时间
+                                <el-date-picker
+                                        style="width:240px;margin-left: 20px;"
+                                        size="small"
+                                        v-model="form.time1"
+                                        type="datetimerange"
+                                        range-separator="至"
+                                        start-placeholder="开始日期"
+                                        end-placeholder="结束日期">
+                                </el-date-picker>
+                            </el-radio>
+                            <el-radio :label="2">
+                                领取后
+                                <el-select size="small" style="width: 120px;margin-left: 35px;" v-model="form.card"
+                                           placeholder="当天"
+                                           clearable>
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                                有效，有效期
+                                <el-select size="small" style="width: 120px;margin-left: 35px;" v-model="form.time2"
+                                           placeholder="1天"
+                                           clearable>
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-radio>
+                        </el-radio-group>
+
+                    </el-form-item>
+                </el-form>
+                <div class="button-wrap">
+                    <el-button type="primary" @click="handleClose" style="width: 120px">保存</el-button>
+                </div>
+            </el-dialog>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="./common/static.js" type="text/javascript"></script>
+<script src="./components/openPlat.js"></script>
+<script src="./components/leftMenu.js"></script>
+<script src="./components/topMenu.js"></script>
+<script src="./components/pageInfo.js"></script>
+<script type="module">
+    new Vue({
+        el: '#app',
+        data: vm => ({
+            isCollapse: false,
+            defaultMenu: defaultMenu,
+            defaultAvatar: defaultAvatar,
+            shopType: '',
+            options: [
+                {
+                    value: '选项1',
+                    label: '黄金糕',
+                },
+            ],
+            shopName: '',
+            tableData: [{
+                date: '2016-05-02',
+                name: '王小虎',
+                phone: '12',
+                count: 11,
+                status: true,
+                aiCount: 1000,
+                ai: true,
+                shop: true,
+                activity: true,
+                card: true,
+                gift: true,
+                disableShop: true,
+            }],
+            permissonDia: false,
+            permissonList: [],
+            countDia: false,
+            countInp: '',
+            chooseShop: {},
+            AiDia: false,
+            aiInp: '',
+            platTypeDia: false,
+            platType: '抖音',
+            form: {},
+            userName: '',
+            userNo: '',
+            userAddress: '',
+            userPhone: '',
+            addGiftDia: false,
+            imageUrl: '',
+        }),
+        created() {
+            this.isCollapse = document.body.clientWidth <= 1200
+            window.addEventListener('resize', () => {
+                this.isCollapse = document.body.clientWidth <= 1200
+            })
+        },
+        methods: {
+            changeCollapse(isCollapse) {
+                this.isCollapse = isCollapse
+            },
+            handleSelectionChange() {
+
+            },
+            handleClose() {
+                this.addGiftDia = false
+            },
+            handleAvatarSuccess() {
+            },
+            beforeAvatarUpload() {
+            },
+        },
+    })
+</script>
+</html>
