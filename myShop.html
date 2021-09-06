@@ -47,7 +47,6 @@
                             <el-button type="primary">
                                 <el-link :underline="false" href="addShop.html">+ 添加商户</el-link>
                             </el-button>
-                            <i class="el-icon-s-grid pointer grid" @click="permissonDia=true"></i>
                         </div>
                     </div>
                     <div class="table-content">
@@ -150,6 +149,9 @@
                                 </template>
                             </el-table-column>
                         </el-table>
+                        <i class="el-icon-printer pointer grid"></i>
+                        <i class="el-icon-folder-opened pointer grid"></i>
+                        <i class="el-icon-s-grid pointer grid" @click="permissonDia=true"></i>
                     </div>
                 </div>
                 <page-info :is-collapse="isCollapse"/>

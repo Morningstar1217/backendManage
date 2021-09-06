@@ -46,6 +46,10 @@
     justify-content: space-around;
 }
 
+.margin-auto {
+    margin: 0 auto !important;
+}
+
 .text-center {
     text-align: center !important;
 }
@@ -256,6 +260,7 @@
 }
 
 .main-content .table-wrap .table-content {
+    position: relative;
     padding: 20px 0;
 }
 
@@ -269,10 +274,21 @@
     color: #fff !important;
 }
 
-.table-wrap .table-top .right .grid {
+.table-wrap .grid {
+    position: absolute;
+    right: 10px;
+    top: 28px;
     color: #3c8fcc;
-    font-size: 36px;
+    font-size: 30px;
     margin-left: 10px;
+}
+
+.table-wrap .grid:nth-child(2){
+    right: 110px;
+}
+
+.table-wrap .grid:nth-child(3){
+    right: 60px;
 }
 
 .container .el-button .el-link {
