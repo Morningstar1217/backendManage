@@ -71,6 +71,7 @@
                             </el-form-item>
                             <el-form-item label="核销人员:">
                                 <el-input size="small" v-model="form.password" style="width:300px"></el-input>
+                                <el-button type="primary" size="mini">一键获取</el-button>
                             </el-form-item>
                             <el-form-item label="代理范围:">
                                 <el-input size="small" v-model="form.password" style="width:150px"></el-input>
@@ -102,7 +103,9 @@
                             </el-upload>
                         </el-form>
                         <div class="button-wrap" v-if="step===2">
+                            <el-button type="primary" @click="step=1">返回分类</el-button>
                             <el-button type="primary">保存</el-button>
+                            <el-button type="primary">下一步</el-button>
                         </div>
                     </div>
                 </div>
