@@ -52,7 +52,7 @@
                                 <div>但是的理解阿斯顿</div>
                                 <el-button type="primary" size="mini">删除</el-button>
                             </div>
-                            <el-button type="primary" size="small" class="video-upload">点击上传</el-button>
+                            <el-button type="primary" size="small" class="video-upload" @click="uploadDia = true">点击上传</el-button>
                         </div>
                         <div class="video-list">
                             <div class="video-type-title">片中</div>
@@ -98,6 +98,7 @@
         <el-dialog title="添加活动" :visible.sync="uploadDia" :before-close="handleClose">
             <div class="upload-wrap margin-auto">
                 <el-upload
+                        multiple
                         class="video-uploader"
                         action="https://jsonplaceholder.typicode.com/posts/"
                         :show-file-list="false"

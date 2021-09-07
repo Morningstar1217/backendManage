@@ -34,58 +34,52 @@
                             </el-button>
                         </div>
                     </div>
-                    <div class="data-blank-title font-weight">数据统计</div>
-                    <div class="data-block-wrap flex-row flex-center flex-start flex-s-b team-data-block-wrap">
-                        <div class="data-block-list">
-                            <div class="number-content">{{ shopNum }}</div>
-                            <div class="number-title">总播放量</div>
+                    <div class="flex-row flex-center flex-start">
+                        <div>
+                            <div class="data-blank-title font-weight">数据统计</div>
+                            <div class="data-block-wrap flex-row flex-center flex-start flex-s-b team-data-block-wrap">
+                                <div class="data-block-list">
+                                    <div class="number-content">{{ shopNum }}</div>
+                                    <div class="number-title">总播放量</div>
+                                </div>
+                                <div class="data-block-list">
+                                    <div class="number-content">{{ playNum }}</div>
+                                    <div class="number-title">总点赞量</div>
+                                </div>
+                                <div class="data-block-list">
+                                    <div class="number-content">{{ likeNum }}</div>
+                                    <div class="number-title">总评论量</div>
+                                </div>
+                            </div>
+                            <div class="data-block-wrap flex-row flex-center flex-start flex-s-b team-data-block-wrap"
+                                 style="margin-top: 20px;">
+                                <div class="data-block-list">
+                                    <div class="number-content">{{ scanNum }}</div>
+                                    <div class="number-title">总收藏量</div>
+                                </div>
+                                <div class="data-block-list">
+                                    <div class="number-content">{{ peopleNum }}</div>
+                                    <div class="number-title">扫码次数</div>
+                                </div>
+                                <div class="data-block-list">
+                                    <div class="number-content">{{ playsNum }}</div>
+                                    <div class="number-title">参与总人数</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="data-block-list">
-                            <div class="number-content">{{ playNum }}</div>
-                            <div class="number-title">总点赞量</div>
-                        </div>
-                        <div class="data-block-list">
-                            <div class="number-content">{{ likeNum }}</div>
-                            <div class="number-title">总评论量</div>
-                        </div>
-                    </div>
-                    <div class="data-block-wrap flex-row flex-center flex-start flex-s-b team-data-block-wrap"
-                         style="margin-top: 20px;">
-                        <div class="data-block-list">
-                            <div class="number-content">{{ scanNum }}</div>
-                            <div class="number-title">总收藏量</div>
-                        </div>
-                        <div class="data-block-list">
-                            <div class="number-content">{{ peopleNum }}</div>
-                            <div class="number-title">扫码次数</div>
-                        </div>
-                        <div class="data-block-list">
-                            <div class="number-content">{{ playsNum }}</div>
-                            <div class="number-title">参与总人数</div>
-                        </div>
-                    </div>
-                    <div class="data-blank-title font-weight">活动全程走势图</div>
-                    <div class="data-block-wrap flex-row flex-center flex-start flex-s-b team-data-block-wrap">
-                        <div class="data-block-list echart-list">
-                            <div class="echart-list-canvas" ref="echartD" id="echartD"></div>
-                        </div>
-                        <div class="data-block-list echart-list">
-                            <div class="echart-list-canvas" ref="echartC" id="echartC"></div>
-                        </div>
-                        <div class="data-block-list echart-list">
-                            <div class="echart-list-canvas" ref="echartB" id="echartB"></div>
-                        </div>
-                    </div>
-                    <div class="data-block-wrap flex-row flex-center flex-start flex-s-b team-data-block-wrap"
-                         style="margin-top: 20px;">
-                        <div class="data-block-list echart-list">
-                            <div class="echart-list-canvas" ref="echartA" id="echartA"></div>
-                        </div>
-                        <div class="data-block-list echart-list">
-                            <div class="echart-list-canvas" ref="echartE" id="echartE"></div>
-                        </div>
-                        <div class="data-block-list echart-list">
-                            <div class="echart-list-canvas" ref="echartF" id="echartF"></div>
+                        <div>
+                            <div class="data-blank-title font-weight">活动全程走势图</div>
+                            <div class="data-block-wrap flex-row flex-center flex-start flex-s-b team-data-block-wrap">
+                                <div class="data-block-list echart-list">
+                                    <div class="echart-list-canvas" ref="echartD" id="echartD"></div>
+                                </div>
+                                <div class="data-block-list echart-list">
+                                    <div class="echart-list-canvas" ref="echartC" id="echartC"></div>
+                                </div>
+                                <div class="data-block-list echart-list">
+                                    <div class="echart-list-canvas" ref="echartB" id="echartB"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="data-blank-title font-weight">扫码详情</div>
@@ -176,9 +170,6 @@
             this.getEchartD()
             this.getEchartC()
             this.getEchartB()
-            this.getEchartA()
-            this.getEchartE()
-            this.getEchartF()
         },
         methods: {
             changeCollapse(isCollapse) {
@@ -282,150 +273,6 @@
             },
             getEchartB() {
                 var chartDom = document.getElementById('echartB')
-                var myChart = echarts.init(chartDom)
-                var option
-
-                option = {
-                    title: {
-                        text: '点赞播放数',
-                    },
-                    tooltip: {
-                        trigger: 'axis',
-                    },
-                    legend: {
-                        data: ['播放数', '点赞数'],
-                        left: '30%',
-                    },
-                    grid: {
-                        left: '1%',
-                        right: '4%',
-                        bottom: '3%',
-                        containLabel: true,
-                    },
-                    xAxis: {
-                        type: 'category',
-                        boundaryGap: false,
-                        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-                    },
-                    yAxis: {
-                        type: 'value',
-                    },
-                    series: [
-                        {
-                            name: '播放数',
-                            type: 'line',
-                            stack: '总量',
-                            data: [120, 132, 101, 134, 90, 230, 210],
-                        },
-                        {
-                            name: '点赞数',
-                            type: 'line',
-                            stack: '总量',
-                            data: [220, 182, 191, 234, 290, 330, 310],
-                        },
-                    ],
-                }
-
-                option && myChart.setOption(option)
-            },
-            getEchartA() {
-                var chartDom = document.getElementById('echartA')
-                var myChart = echarts.init(chartDom)
-                var option
-
-                option = {
-                    title: {
-                        text: '点赞播放数',
-                    },
-                    tooltip: {
-                        trigger: 'axis',
-                    },
-                    legend: {
-                        data: ['播放数', '点赞数'],
-                        left: '30%',
-                    },
-                    grid: {
-                        left: '1%',
-                        right: '4%',
-                        bottom: '3%',
-                        containLabel: true,
-                    },
-                    xAxis: {
-                        type: 'category',
-                        boundaryGap: false,
-                        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-                    },
-                    yAxis: {
-                        type: 'value',
-                    },
-                    series: [
-                        {
-                            name: '播放数',
-                            type: 'line',
-                            stack: '总量',
-                            data: [120, 132, 101, 134, 90, 230, 210],
-                        },
-                        {
-                            name: '点赞数',
-                            type: 'line',
-                            stack: '总量',
-                            data: [220, 182, 191, 234, 290, 330, 310],
-                        },
-                    ],
-                }
-
-                option && myChart.setOption(option)
-            },
-            getEchartE() {
-                var chartDom = document.getElementById('echartE')
-                var myChart = echarts.init(chartDom)
-                var option
-
-                option = {
-                    title: {
-                        text: '点赞播放数',
-                    },
-                    tooltip: {
-                        trigger: 'axis',
-                    },
-                    legend: {
-                        data: ['播放数', '点赞数'],
-                        left: '30%',
-                    },
-                    grid: {
-                        left: '1%',
-                        right: '4%',
-                        bottom: '3%',
-                        containLabel: true,
-                    },
-                    xAxis: {
-                        type: 'category',
-                        boundaryGap: false,
-                        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-                    },
-                    yAxis: {
-                        type: 'value',
-                    },
-                    series: [
-                        {
-                            name: '播放数',
-                            type: 'line',
-                            stack: '总量',
-                            data: [120, 132, 101, 134, 90, 230, 210],
-                        },
-                        {
-                            name: '点赞数',
-                            type: 'line',
-                            stack: '总量',
-                            data: [220, 182, 191, 234, 290, 330, 310],
-                        },
-                    ],
-                }
-
-                option && myChart.setOption(option)
-            },
-            getEchartF() {
-                var chartDom = document.getElementById('echartF')
                 var myChart = echarts.init(chartDom)
                 var option
 

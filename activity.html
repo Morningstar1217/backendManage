@@ -172,7 +172,15 @@
                     <el-input size="small" v-model="form.time" style="width:300px"></el-input>
                 </el-form-item>
                 <el-form-item label="有效期限:">
-                    <el-input size="small" v-model="form.time" style="width:300px"></el-input>
+                    <el-date-picker
+                            style="width:300px"
+                            size="small"
+                            v-model="form.time1"
+                            type="datetimerange"
+                            range-separator="至"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期">
+                    </el-date-picker>
                 </el-form-item>
                 <el-form-item label="选择模式:">
                     <el-radio-group v-model="form.timeModel" style="width:360px">
@@ -280,17 +288,33 @@
                     <el-input size="small" v-model="form4.key" style="width:300px"></el-input>
                 </el-form-item>
                 <el-form-item label="素材原声:">
-                    <el-input size="small" v-model="form4.secret" style="width:300px"></el-input>
+                    <el-select style="width: 120px" v-model="shopType" placeholder="保留原声"
+                               clearable>
+                        <el-option
+                                v-for="item in options"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                        </el-option>
+                    </el-select>
                 </el-form-item>
                 <el-form-item label="生成规则:">
-                    <el-input size="small" v-model="form4.url" style="width:150px"></el-input>
-                    <el-input size="small" v-model="form4.url2" style="width:150px"></el-input>
+                    <el-input size="small" v-model="form4.url" style="width:150px" placeholder="随机素材数"></el-input>
+                    <el-input size="small" v-model="form4.url2" style="width:150px" placeholder="随机音频数"></el-input>
                 </el-form-item>
                 <el-form-item label="生成数量:">
                     <el-input size="small" v-model="form4.time" style="width:300px"></el-input>
                 </el-form-item>
                 <el-form-item label="生成模式:">
-                    <el-input size="small" v-model="form4.time" style="width:300px"></el-input>
+                    <el-select style="width: 120px" v-model="shopType" placeholder="保存即生成"
+                               clearable>
+                        <el-option
+                                v-for="item in options"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                        </el-option>
+                    </el-select>
                 </el-form-item>
             </el-form>
             <div class="button-wrap" style="margin-top: 20px;">

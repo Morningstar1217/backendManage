@@ -89,7 +89,7 @@
                 </div>
                 <page-info :is-collapse="isCollapse"/>
             </div>
-            <el-dialog title="添加卡券" :visible="addGiftDia"
+            <el-dialog title="添加卡券" :visible="addGiftDia" width="1000px"
                        :before-close="handleClose">
                 <el-form inline label-width="100px" label-position="right">
                     <el-form-item label="卡券名称:">
@@ -127,6 +127,9 @@
                     <el-form-item label="卡券内容:">
                         <el-input size="small" v-model="form.secret" style="width:240px"></el-input>
                     </el-form-item>
+                    <el-form-item label="使用规则:">
+                        <el-input size="small" v-model="form.secret" style="width:240px"></el-input>
+                    </el-form-item>
                     <el-form-item label="领取有效期:">
                         <el-date-picker
                                 style="width:240px"
@@ -137,9 +140,6 @@
                                 start-placeholder="开始日期"
                                 end-placeholder="结束日期">
                         </el-date-picker>
-                    </el-form-item>
-                    <el-form-item label="使用规则:">
-                        <el-input size="small" v-model="form.secret" style="width:240px"></el-input>
                     </el-form-item>
                     <el-form-item label="卡券有效期:">
                         <el-radio-group v-model="form.timeModel" style="width:300px">
