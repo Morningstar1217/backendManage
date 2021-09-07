@@ -157,13 +157,13 @@
                         </div>
                     </div>
                 </div>
-<!--                <div class="button-wrap text-right">-->
-<!--                    <el-button type="primary" v-if="step===1" size="small">-->
-<!--                        <el-link href="myShop.html" :underline="false">返回我的商户</el-link>-->
-<!--                    </el-button>-->
-<!--                    <el-button type="primary" v-if="step===1" size="small" @click="step=2">添加商户</el-button>-->
-<!--                    <el-button type="primary" v-else size="small" @click="step=2">下一步</el-button>-->
-<!--                </div>-->
+                <!--                <div class="button-wrap text-right">-->
+                <!--                    <el-button type="primary" v-if="step===1" size="small">-->
+                <!--                        <el-link href="myShop.html" :underline="false">返回我的商户</el-link>-->
+                <!--                    </el-button>-->
+                <!--                    <el-button type="primary" v-if="step===1" size="small" @click="step=2">添加商户</el-button>-->
+                <!--                    <el-button type="primary" v-else size="small" @click="step=2">下一步</el-button>-->
+                <!--                </div>-->
                 <page-info :is-collapse="isCollapse"/>
             </div>
             <el-dialog title="添加分类" :visible.sync="addTypeDia" width="30%"
@@ -215,6 +215,7 @@
             window.addEventListener('resize', () => {
                 this.isCollapse = document.body.clientWidth <= 1200
             })
+            this.step = location.href.split('?')[1].split('=')[1] || 1
         },
         methods: {
             changeCollapse(isCollapse) {
