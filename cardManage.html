@@ -127,7 +127,7 @@
                     <el-form-item label="卡券内容:">
                         <el-input size="small" v-model="form.secret" style="width:240px"></el-input>
                     </el-form-item>
-                    <el-form-item label="领取有效期:">
+                    <el-form-item label="领取周期:">
                         <el-date-picker
                                 style="width:240px"
                                 size="small"
@@ -138,7 +138,7 @@
                                 end-placeholder="结束日期">
                         </el-date-picker>
                     </el-form-item>
-                    <el-form-item label="卡券有效期:">
+                    <el-form-item label="有效周期:">
                         <el-radio-group v-model="form.timeModel" style="width:300px">
                             <el-radio :label="1" style="margin:0 20px 20px 0;">
                                 固定时间
