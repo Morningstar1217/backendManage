@@ -23,7 +23,7 @@
                     <div class="table-top flex-row flex-center flex-start flex-s-b">
                         <div class="left flex-row flex-center flex-start flex-no-wrap">
                             <div class="flex-row flex-center flex-start flex-no-wrap">
-                                <el-select style="width: 120px" size="small" v-model="shopType" placeholder="按活动名称"
+                                <el-select style="width: 120px" v-model="shopType" placeholder="按活动名称"
                                            clearable>
                                     <el-option
                                             v-for="item in options"
@@ -113,7 +113,7 @@
                                                         <el-dropdown-item>删除</el-dropdown-item>
                                                         <el-dropdown-item>活动编辑</el-dropdown-item>
                                                         <el-dropdown-item>活动介绍</el-dropdown-item>
-                                                        <el-dropdown-item command="aliDia">页面配置</el-dropdown-item>
+                                                        <el-dropdown-item>页面配置</el-dropdown-item>
                                                         <el-dropdown-item>接口权限</el-dropdown-item>
                                                         <el-dropdown-item>延时推送设置</el-dropdown-item>
                                                         <el-dropdown-item>卡券选择</el-dropdown-item>
@@ -125,14 +125,14 @@
                                                     </div>
                                                     <div>
                                                         <el-dropdown-item>复制活动ID</el-dropdown-item>
-                                                        <el-dropdown-item>视频库查看</el-dropdown-item>
+                                                        <el-dropdown-item>
+                                                            <el-link :underline="false" href="originAI.html">视频库查看
+                                                            </el-link>
+                                                        </el-dropdown-item>
                                                         <el-dropdown-item>我的卡券二维码</el-dropdown-item>
                                                         <el-dropdown-item>充值点数</el-dropdown-item>
                                                         <el-dropdown-item>复制活动</el-dropdown-item>
-                                                        <el-dropdown-item>
-                                                            <el-link :underline="false" href="originAI.html">原AI配置
-                                                            </el-link>
-                                                        </el-dropdown-item>
+                                                        <el-dropdown-item command="aliDia">原AI配置</el-dropdown-item>
                                                         <el-dropdown-item command="douyinDia">抖音小程序</el-dropdown-item>
                                                         <el-dropdown-item command="openMiniDia">微信小程序</el-dropdown-item>
                                                         <el-dropdown-item command="homeDia">活动定位和跳转</el-dropdown-item>
