@@ -60,22 +60,70 @@
                                 <el-input size="small" v-model="form.password" style="width:300px"></el-input>
                             </el-form-item>
                             <el-form-item label="选择分类:">
-                                <el-input size="small" v-model="form.password" style="width:300px"></el-input>
+                                <el-select style="width: 300px" size="small" v-model="form.shopType" placeholder="选择分类"
+                                           clearable>
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
                             </el-form-item>
                             <el-form-item label="商家有效期:">
-                                <el-input size="small" v-model="form.password" style="width:300px"></el-input>
+                                <el-date-picker
+                                        style="width:300px"
+                                        size="small"
+                                        v-model="form.time1"
+                                        type="datetimerange"
+                                        range-separator="至"
+                                        start-placeholder="开始日期"
+                                        end-placeholder="结束日期">
+                                </el-date-picker>
                             </el-form-item>
                             <el-form-item label="代理:">
-                                <el-input size="small" v-model="form.password" style="width:150px"></el-input>
-                                <el-input size="small" v-model="form.password" style="width:150px"></el-input>
+                                <el-select style="width: 150px" size="small" v-model="form.shopType" placeholder=""
+                                           clearable>
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                                <el-select style="width: 150px" size="small" v-model="form.shopType" placeholder=""
+                                           clearable>
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
                             </el-form-item>
                             <el-form-item label="核销人员:">
                                 <el-input size="small" v-model="form.password" style="width:300px"></el-input>
                                 <el-button type="primary" size="mini">一键获取</el-button>
                             </el-form-item>
                             <el-form-item label="代理范围:">
-                                <el-input size="small" v-model="form.password" style="width:150px"></el-input>
-                                <el-input size="small" v-model="form.password" style="width:150px"></el-input>
+                                <el-select style="width: 150px" size="small" v-model="form.shopType" placeholder=""
+                                           clearable>
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
+                                <el-select style="width: 150px" size="small" v-model="form.shopType" placeholder=""
+                                           clearable>
+                                    <el-option
+                                            v-for="item in options"
+                                            :key="item.value"
+                                            :label="item.label"
+                                            :value="item.value">
+                                    </el-option>
+                                </el-select>
                             </el-form-item>
                             <el-form-item label="核销码:">
                                 <el-input size="small" v-model="form.password" style="width:300px"></el-input>
@@ -155,6 +203,12 @@
             typeInp: '',
             form: {},
             imageUrl: '',
+            options: [
+                {
+                    value: '选项1',
+                    label: '黄金糕',
+                },
+            ],
         }),
         created() {
             this.isCollapse = document.body.clientWidth <= 1200
