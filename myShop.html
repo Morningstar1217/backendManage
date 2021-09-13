@@ -11,13 +11,7 @@
 <body>
 <div id="app" v-cloak>
     <div class="container flex-row">
-        <div>
-            <left-menu active-menu="2-1" :default-menu="defaultMenu" :is-collapse="isCollapse"/>
-        </div>
-        <div class="content" :class="{closeMenu:isCollapse}">
-            <div>
-                <top-menu :is-collapse="isCollapse" :default-avatar="defaultAvatar" @change-collapse="changeCollapse"/>
-            </div>
+        <div class="content" style="padding: 0">
             <div class="main-content">
                 <div class="table-wrap">
                     <div class="table-top flex-row flex-center flex-start flex-s-b">
@@ -44,7 +38,7 @@
                             <el-button type="primary">
                                 <el-link :underline="false" href="addShop.html">+ 添加分类</el-link>
                             </el-button>
-                            <el-button type="primary">
+                            <el-button type="primary" @click="saveKey">
                                 <el-link :underline="false" href="addShop.html?step=2">+ 添加商户</el-link>
                             </el-button>
                         </div>
@@ -340,6 +334,9 @@
                         this.platTypeDia = true
                         break
                 }
+            },
+            saveKey() {
+                window.sessionStorage.setItem('shopKey', '2')
             },
         },
     })

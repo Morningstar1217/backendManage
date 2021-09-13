@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="">
     <meta charset="UTF-8">
-    <title>开放平台对接</title>
+    <title>总页面</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="./styles/layout.css">
     <link rel="stylesheet" href="./element-ui/index.css">
@@ -12,27 +12,14 @@
 <div id="app" v-cloak>
     <div class="container flex-row">
         <div>
-            <left-menu active-menu="1-1" :default-menu="defaultMenu" :is-collapse="isCollapse"/>
+            <left-menu @change-menu="changeUrl" active-menu="1-1" :default-menu="defaultMenu" :is-collapse="isCollapse"/>
         </div>
         <div class="content" :class="{closeMenu:isCollapse}">
             <div>
                 <top-menu :is-collapse="isCollapse" :default-avatar="defaultAvatar" @change-collapse="changeCollapse"/>
             </div>
-            <div class="main-content">
-                <div class="open-plat-wrap flex-row flex-center flex-top flex-wrap flex-s-a">
-                    <div>
-                        <open-plat form-title="抖音开放平台" ref="plat1"/>
-                    </div>
-                    <div>
-                        <open-plat form-title="快手开放平台" ref="plat2"/>
-                    </div>
-                </div>
-                <div class="button-wrap">
-                    <el-button type="primary">保存</el-button>
-                    <el-button type="primary" @click="nextStep">下一步</el-button>
-                </div>
-                <page-info :is-collapse="isCollapse"/>
-            </div>
+            <iframe :src="mainSrc"></iframe>
+            <page-info :is-collapse="isCollapse"/>
         </div>
     </div>
 </div>
@@ -51,6 +38,7 @@
             isCollapse: false,
             defaultMenu: defaultMenu,
             defaultAvatar: defaultAvatar,
+            mainSrc: 'openPlatm.html',
         }),
         created() {
             this.isCollapse = document.body.clientWidth <= 1200
@@ -66,6 +54,9 @@
             changeCollapse(isCollapse) {
                 this.isCollapse = isCollapse
             },
+            changeUrl(item){
+                this.mainSrc = item.path
+            }
         },
     })
 </script>

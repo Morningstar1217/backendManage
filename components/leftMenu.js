@@ -27,16 +27,16 @@ Vue.component('left-menu', {
             <span slot="title">{{ item.title }}</span>
           </template>
           <el-menu-item class="flex flex-center flex-start" :index="item.index+'-'+itm.index"
-                        v-for="(itm,ind) in item.children" :key="ind">
+                        v-for="(itm,ind) in item.children" :key="ind" @click="changeMenu(itm)">
             <img src="../images/menu.png" alt="" class="sub-menu-icon">
-            <el-link :underline="false" :href="itm.path">{{ itm.title }}</el-link>
+            <el-link :underline="false">{{ itm.title }}</el-link>
           </el-menu-item>
         </el-submenu>
       </el-menu>
       </div>`,
     methods: {
         changeMenu(val) {
-            console.log(val)
+            this.$emit('change-menu', val)
         },
     },
 })

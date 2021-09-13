@@ -168,7 +168,7 @@
 }
 
 .container .content .top-menu.closeMenu,
-.container .content .main-content .page-info.closeMenu {
+.page-info.closeMenu {
     padding-left: 84px;
 }
 
@@ -187,8 +187,13 @@
     margin-left: 10px;
 }
 
-.container .content .main-content {
-    padding: 88px 20px 110px;
+.container .content iframe {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 80px 20px 0;
+    margin: 0;
+    overflow: hidden;
 }
 
 .container .content .main-content .form-wrap .open-plat-title {
@@ -233,7 +238,7 @@
     margin-left: 10px;
 }
 
-.container .main-content .page-info {
+.page-info {
     box-sizing: border-box;
     position: fixed;
     width: 100%;
@@ -248,11 +253,11 @@
     transition: .4s;
 }
 
-.container .main-content .page-info.changeHeight {
+.page-info.changeHeight {
     height: 400px;
 }
 
-.container .main-content .page-info .info-content {
+.page-info .info-content {
     font-size: 14px;
     color: #333;
     margin-top: 10px;
@@ -261,7 +266,7 @@
     overflow: auto;
 }
 
-.container .main-content .page-info .open-or-close {
+.page-info .open-or-close {
     position: absolute;
     top: 4px;
     left: 50%;
@@ -326,7 +331,6 @@
     display: inline-block;
     color: #fff !important;
     font-size: 14px;
-    height: 16px !important;
 }
 
 .permisson-dia .permisson-wrap .el-checkbox {

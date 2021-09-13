@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="">
     <meta charset="UTF-8">
-    <title>AI平台对接</title>
+    <title>开放平台对接</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="./styles/layout.css">
     <link rel="stylesheet" href="./element-ui/index.css">
@@ -13,24 +13,18 @@
     <div class="container flex-row">
         <div class="content" style="padding: 0">
             <div class="main-content">
-                <div class="open-plat-wrap" style="padding-bottom: 0;">
-                    <el-radio-group v-model="platType" class="plat-type-wrap" style="display: block">
-                        <el-radio :label="1">阿咪多（推荐）</el-radio>
-                        <el-radio :label="2">腾讯云</el-radio>
-                        <el-radio :label="3">阿里云</el-radio>
-                    </el-radio-group>
-                    <div class="open-plat-wrap flex-row flex-center flex-top flex-wrap">
-                        <div>
-                            <open-plat ref="plat1" :plat-type="platType"/>
-                        </div>
+                <div class="open-plat-wrap flex-row flex-center flex-top flex-wrap flex-s-a">
+                    <div>
+                        <open-plat form-title="抖音开放平台" ref="plat1"/>
+                    </div>
+                    <div>
+                        <open-plat form-title="快手开放平台" ref="plat2"/>
                     </div>
                 </div>
                 <div class="button-wrap">
-                    <el-button type="primary">上一步</el-button>
-                    <el-button type="primary">保 存</el-button>
+                    <el-button type="primary">保存</el-button>
                     <el-button type="primary" @click="nextStep">下一步</el-button>
                 </div>
-                <page-info :is-collapse="isCollapse"/>
             </div>
         </div>
     </div>
@@ -46,14 +40,11 @@
 <script type="module">
     new Vue({
         el: '#app',
-        data() {
-            return {
-                isCollapse: false,
-                defaultMenu: defaultMenu,
-                defaultAvatar: defaultAvatar,
-                platType: 1,
-            }
-        },
+        data: vm => ({
+            isCollapse: false,
+            defaultMenu: defaultMenu,
+            defaultAvatar: defaultAvatar,
+        }),
         created() {
             this.isCollapse = document.body.clientWidth <= 1200
             window.addEventListener('resize', () => {

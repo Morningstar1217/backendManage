@@ -11,10 +11,7 @@
 <body>
 <div id="app" v-cloak>
     <div class="container flex-row">
-        <div>
-            <left-menu active-menu="4-1" :default-menu="defaultMenu" :is-collapse="isCollapse"/>
-        </div>
-        <div class="content" :class="{closeMenu:isCollapse}">
+        <div class="content" style="padding: 0">
             <div>
                 <top-menu :is-collapse="isCollapse" :default-avatar="defaultAvatar" @change-collapse="changeCollapse"/>
             </div>

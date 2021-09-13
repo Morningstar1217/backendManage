@@ -6,7 +6,7 @@ const defaultMenu = [
             {
                 title: '开放平台设置',
                 index: '1',
-                path: 'index.html',
+                path: 'openPlatm.html',
             },
             {
                 title: 'AI混剪设置',
