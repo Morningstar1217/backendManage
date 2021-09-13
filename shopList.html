@@ -135,6 +135,13 @@
                                 </template>
                             </el-table-column>
                         </el-table>
+                        <el-pagination
+                                class="text-center"
+                                style="margin: 20px auto"
+                                background
+                                layout="prev, pager, next"
+                                :total="1000">
+                        </el-pagination>
                     </div>
                 </div>
                 <page-info :is-collapse="isCollapse"/>

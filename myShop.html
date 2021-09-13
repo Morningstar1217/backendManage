@@ -154,6 +154,13 @@
                         <i class="el-icon-s-grid pointer grid" @click="permissonDia=true"></i>
                     </div>
                 </div>
+                <el-pagination
+                        class="text-center"
+                        style="margin: 0 auto"
+                        background
+                        layout="prev, pager, next"
+                        :total="1000">
+                </el-pagination>
                 <page-info :is-collapse="isCollapse"/>
             </div>
         </div>

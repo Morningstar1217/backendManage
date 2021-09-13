@@ -40,7 +40,15 @@
                                 </template>
                             </el-table-column>
                         </el-table>
-                        <el-form class="open-plat-wrap" inline label-width="120px" label-position="right" v-else>
+                        <el-pagination
+                                v-if="step===1"
+                                class="text-center"
+                                style="margin: 20px auto"
+                                background
+                                layout="prev, pager, next"
+                                :total="1000">
+                        </el-pagination>
+                        <el-form class="open-plat-wrap" inline label-width="120px" label-position="right" v-if="step===2">
                             <el-form-item label="商户名称:">
                                 <el-input size="small" v-model="form.key" style="width:300px"></el-input>
                             </el-form-item>
@@ -103,13 +111,13 @@
                         </el-form>
                     </div>
                 </div>
-<!--                <div class="button-wrap text-right">-->
-<!--                    <el-button type="primary" v-if="step===1" size="small">-->
-<!--                        <el-link href="myShop.html" :underline="false">返回我的商户</el-link>-->
-<!--                    </el-button>-->
-<!--                    <el-button type="primary" v-if="step===1" size="small" @click="step=2">添加商户</el-button>-->
-<!--                    <el-button type="primary" v-else size="small" @click="step=2">下一步</el-button>-->
-<!--                </div>-->
+                <!--                <div class="button-wrap text-right">-->
+                <!--                    <el-button type="primary" v-if="step===1" size="small">-->
+                <!--                        <el-link href="myShop.html" :underline="false">返回我的商户</el-link>-->
+                <!--                    </el-button>-->
+                <!--                    <el-button type="primary" v-if="step===1" size="small" @click="step=2">添加商户</el-button>-->
+                <!--                    <el-button type="primary" v-else size="small" @click="step=2">下一步</el-button>-->
+                <!--                </div>-->
                 <page-info :is-collapse="isCollapse"/>
             </div>
             <el-dialog title="添加分类" :visible.sync="addTypeDia" width="30%"
