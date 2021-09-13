@@ -19,19 +19,19 @@
                 <top-menu :is-collapse="isCollapse" :default-avatar="defaultAvatar" @change-collapse="changeCollapse"/>
             </div>
             <div class="main-content">
-                <div class="open-plat-wrap margin-auto" style="padding-bottom: 0;">
-                    <el-radio-group v-model="platType" class="plat-type-wrap margin-auto" style="display: block">
+                <div class="open-plat-wrap" style="padding-bottom: 0;">
+                    <el-radio-group v-model="platType" class="plat-type-wrap" style="display: block">
                         <el-radio :label="1">阿咪多（推荐）</el-radio>
                         <el-radio :label="2">腾讯云</el-radio>
                         <el-radio :label="3">阿里云</el-radio>
                     </el-radio-group>
                     <div class="open-plat-wrap flex-row flex-center flex-top flex-wrap">
-                        <div class="margin-auto">
+                        <div>
                             <open-plat ref="plat1" :plat-type="platType"/>
                         </div>
                     </div>
                 </div>
-                <div class="button-wrap margin-auto">
+                <div class="button-wrap">
                     <el-button type="primary">上一步</el-button>
                     <el-button type="primary">保 存</el-button>
                     <el-button type="primary" @click="nextStep">下一步</el-button>

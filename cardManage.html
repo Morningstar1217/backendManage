@@ -96,7 +96,7 @@
                 </div>
                 <page-info :is-collapse="isCollapse"/>
             </div>
-            <el-dialog title="添加卡券" :visible="addGiftDia"
+            <el-dialog title="添加卡券" :visible="addGiftDia" width="800px"
                        :before-close="handleClose">
                 <el-form inline label-width="100px" label-position="right">
                     <el-form-item label="卡券名称:">
@@ -134,7 +134,7 @@
                     <el-form-item label="卡券内容:">
                         <el-input size="small" v-model="form.secret" style="width:240px"></el-input>
                     </el-form-item>
-                    <el-form-item label="领取有效期:">
+                    <el-form-item label="领取周期:">
                         <el-date-picker
                                 style="width:240px"
                                 size="small"
@@ -145,15 +145,12 @@
                                 end-placeholder="结束日期">
                         </el-date-picker>
                     </el-form-item>
-                    <el-form-item label="使用规则:">
-                        <el-input size="small" v-model="form.secret" style="width:240px"></el-input>
-                    </el-form-item>
-                    <el-form-item label="卡券有效期:">
+                    <el-form-item label="有效周期:">
                         <el-radio-group v-model="form.timeModel" style="width:300px">
                             <el-radio :label="1" style="margin:0 20px 20px 0;">
                                 固定时间
                                 <el-date-picker
-                                        style="width:240px;margin-left: 20px;"
+                                        style="width:348px;margin-left: 20px;"
                                         size="small"
                                         v-model="form.time1"
                                         type="datetimerange"
@@ -175,7 +172,7 @@
                                     </el-option>
                                 </el-select>
                                 有效，有效期
-                                <el-select size="small" style="width: 120px;margin-left: 35px;" v-model="form.time2"
+                                <el-select size="small" style="width: 120px;margin-left: 10px;" v-model="form.time2"
                                            placeholder="1天"
                                            clearable>
                                     <el-option
@@ -188,6 +185,10 @@
                             </el-radio>
                         </el-radio-group>
 
+                    </el-form-item>
+                    <el-form-item label="使用规则:" style="display: block">
+                        <el-input size="small" v-model="form.secret" style="width:600px" type="textarea"
+                                  :rows="5"></el-input>
                     </el-form-item>
                 </el-form>
                 <div class="button-wrap">

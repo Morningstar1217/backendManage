@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="">
     <meta charset="UTF-8">
-    <title>开放平台对接</title>
+    <title>商户详情</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="./styles/layout.css">
     <link rel="stylesheet" href="./element-ui/index.css">
@@ -23,7 +23,7 @@
                     <div class="table-top flex-row flex-center flex-start flex-s-b">
                         <div class="left flex-row flex-center flex-start flex-no-wrap">
                             <div class="flex-row flex-center flex-start flex-no-wrap">
-                                <el-select style="width: 120px" v-model="shopType" placeholder="所属类别"
+                                <el-select style="width: 120px" v-model="shopType" placeholder="所属业务员"
                                            clearable>
                                     <el-option
                                             v-for="item in options"
@@ -45,7 +45,7 @@
                                 <el-link :underline="false" href="addShop.html">+ 添加分类</el-link>
                             </el-button>
                             <el-button type="primary">
-                                <el-link :underline="false" href="addShop.html">+ 添加商户</el-link>
+                                <el-link :underline="false" href="addShop.html?step=2">+ 添加商户</el-link>
                             </el-button>
                             <i class="el-icon-s-grid pointer grid" @click="permissonDia=true"></i>
                         </div>
@@ -57,6 +57,8 @@
                             <el-table-column prop="name" label="商户名称">
                             </el-table-column>
                             <el-table-column prop="phone" label="手机号">
+                            </el-table-column>
+                            <el-table-column prop="name" label="业务员">
                             </el-table-column>
                             <el-table-column prop="count" label="点数余额">
                             </el-table-column>

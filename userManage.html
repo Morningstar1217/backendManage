@@ -53,7 +53,11 @@
                             </el-table-column>
                             <el-table-column prop="phone" label="手机号">
                             </el-table-column>
-                            <el-table-column prop="count" label="openid">
+                            <el-table-column label="openid">
+                                <template slot-scope="scope">
+                                    <span>{{scope.row.count}}</span>
+                                    <el-button type="primary" size="mini">一键复制</el-button>
+                                </template>
                             </el-table-column>
                             <el-table-column prop="aiCount" label="所属地区">
                             </el-table-column>

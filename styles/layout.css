@@ -257,6 +257,8 @@
     color: #333;
     margin-top: 10px;
     text-indent: 20px;
+    max-height: 340px;
+    overflow: auto;
 }
 
 .container .main-content .page-info .open-or-close {
@@ -321,8 +323,10 @@
 }
 
 .container .el-button .el-link {
+    display: inline-block;
     color: #fff !important;
     font-size: 14px;
+    height: 16px !important;
 }
 
 .permisson-dia .permisson-wrap .el-checkbox {
@@ -412,6 +416,17 @@
     border-radius: 4px;
     color: #fff;
     padding: 20px;
+}
+
+.container .data-block-wrap .data-block-list.echart-list {
+    width: 360px;
+    height: 260px;
+    background: none !important;
+}
+
+.container .data-block-wrap .data-block-list.echart-list .echart-list-canvas {
+    width: 320px;
+    height: 220px;
 }
 
 .container .team-data-block-wrap .data-block-list {
@@ -590,11 +605,8 @@
 
 .upload-wrap {
     box-sizing: border-box;
-    width: 1000px;
     padding: 20px;
-    border: 1px solid #aaa;
     border-radius: 8px;
-    margin-top: 20px!important;
 }
 
 .upload-wrap .upload-btn {
