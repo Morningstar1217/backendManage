@@ -618,3 +618,7 @@
     display: block;
     margin: 20px auto 0;
 }
+
+.ql-editor{
+    min-height: 400px;
+}
